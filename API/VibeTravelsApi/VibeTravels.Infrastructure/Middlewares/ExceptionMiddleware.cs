@@ -1,11 +1,12 @@
 ﻿using Humanizer;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using VibeTravels.Infrastructure.Models;
 using VibeTravels.Shared.Exceptions;
 
 namespace VibeTravels.Infrastructure.Middlewares;
 
-internal sealed class ExceptionMiddleware : IMiddleware
+internal sealed class ExceptionMiddleware(ILogger<ExceptionMiddleware> logger) : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
@@ -15,6 +16,7 @@ internal sealed class ExceptionMiddleware : IMiddleware
         }
         catch (Exception exception)
         {
+            logger.LogError(exception, exception.Message);
             await HandleExceptionAsync(exception, context);
         }
     }
