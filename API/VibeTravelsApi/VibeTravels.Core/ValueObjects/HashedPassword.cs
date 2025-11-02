@@ -6,7 +6,7 @@ public sealed record HashedPassword
 {
     public string Value { get; }
     
-    private HashedPassword(string hashedValue)
+    public HashedPassword(string hashedValue)
     {
         if (string.IsNullOrWhiteSpace(hashedValue))
             throw new EmptyPasswordException();

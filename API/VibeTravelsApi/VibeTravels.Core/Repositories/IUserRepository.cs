@@ -6,5 +6,6 @@ namespace VibeTravels.Core.Repositories;
 public interface IUserRepository
 {
     Task<User?> GetUserOrDefault(Specification<User> specification);
-    Task<User> AddUser(User user);
+    Task AddUser(User user);
+    Task UpdateUser(User user);
 }
