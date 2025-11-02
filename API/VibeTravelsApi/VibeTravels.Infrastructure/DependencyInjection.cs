@@ -12,6 +12,11 @@ namespace VibeTravels.Infrastructure;
 
 public static class DependencyInjection
 {
+    public static void AddInfrastructureBuilderConfig(this WebApplicationBuilder builder)
+    {
+        builder.ConfigureSerilogLogging();
+    }
+
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddOpenApi();
