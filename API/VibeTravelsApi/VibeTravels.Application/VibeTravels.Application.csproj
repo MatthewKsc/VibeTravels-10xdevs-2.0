@@ -3,10 +3,20 @@
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\VibeTravels.Core\VibeTravels.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.10" />
+      <PackageReference Include="Scrutor" Version="6.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Queries\" />
     </ItemGroup>
 
 </Project>
