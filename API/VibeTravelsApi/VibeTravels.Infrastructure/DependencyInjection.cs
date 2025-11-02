@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Scalar.AspNetCore;
 using VibeTravels.Infrastructure.DAL;
+using VibeTravels.Infrastructure.Middlewares;
 using VibeTravels.Infrastructure.Security;
 
 namespace VibeTravels.Infrastructure;
@@ -14,6 +15,8 @@ public static class DependencyInjection
     {
         services.AddOpenApi();
         
+        services.AddSingleton<ExceptionMiddleware>();
+        
         services.AddSecurity(configuration);
         services.AddHttpContextAccessor();
 
@@ -22,15 +25,15 @@ public static class DependencyInjection
 
     public static void UseInfrastructure(this WebApplication application)
     {
-        application.UseAuthentication();
-        application.UseAuthorization();
+        application.UseMiddleware<ExceptionMiddleware>();
         
         if (application.Environment.IsDevelopment())
         {
             application.MapOpenApi();
             application.MapScalarApiReference();
         }
-
-        application.UseHttpsRedirection();
+        
+        application.UseAuthentication();
+        application.UseAuthorization();
     }
 }
