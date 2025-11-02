@@ -14,12 +14,16 @@ public static class DependencyInjection
     {
         services.AddOpenApi();
         
+        services.AddSecurity(configuration);
+        services.AddHttpContextAccessor();
 
         services.AddPostgres(configuration);
     }
 
     public static void UseInfrastructure(this WebApplication application)
     {
+        application.UseAuthentication();
+        application.UseAuthorization();
         
         if (application.Environment.IsDevelopment())
         {

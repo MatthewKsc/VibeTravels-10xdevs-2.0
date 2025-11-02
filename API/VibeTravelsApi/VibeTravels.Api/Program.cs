@@ -14,5 +14,7 @@ WebApplication app = builder.Build();
 
 app.UseInfrastructure();
 
+RouteGroupBuilder api = app.MapGroup("/api");
+api.MapUserEndpoints();
 
 app.Run();
