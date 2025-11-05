@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using VibeTravels.Application.Commands;
 using VibeTravels.Application.DTO;
 using VibeTravels.Application.Security;
@@ -25,5 +26,10 @@ public static class UserEndpoints
                 return jwt is not null ? Results.Ok(jwt) : Results.Unauthorized();
             })
             .WithName("SignInUser");
+        
+        //TODO: Temporary endpoint to check API authorization, remove it later
+        builder.MapGet("/alive", [Authorize] () => Results.Ok("Api Alive"))
+            .WithName("Alive")
+            .RequireAuthorization();
     }
 }
