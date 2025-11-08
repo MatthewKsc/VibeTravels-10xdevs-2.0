@@ -1,0 +1,188 @@
+/* These tokens are generated using https://themes.angular-material.dev/ */
+/* Preview: https://themes.angular-material.dev/?bold-font-weight=700&brand-font-family=Poppins&medium-font-weight=500&plain-font-family=Poppins&regular-font-weight=400&seed-error=%23ba1a1a&seed-neutral=%2382756c&seed-neutral-variant=%23877365&seed-primary=%23D87D25&seed-secondary=%237f5532&seed-tertiary=%235b6400 */
+/* Seed Colors: primary: #D87D25, secondary: #7f5532, tertiary: #5b6400, error: #ba1a1a, neutral: #82756c, neutral-variant: #877365 */
+/* Seed Typography: plain-font-family: Poppins, brand-font-family: Poppins, bold-font-weight: 700, medium-font-weight: 500, regular-font-weight: 400 */
+
+/* Make sure to import fonts in `<head>` of html */
+/*
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Poppins&display=swap');
+</style>
+
+OR
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&family=Poppins&display=swap">
+*/
+
+@use "@angular/material" as mat;
+
+
+/* Light Theme */
+:root, :host {
+  @include mat.theme-overrides((
+    primary: #914d00,
+    on-primary: #ffffff,
+    primary-container: #ffdcc3,
+    on-primary-container: #2f1500,
+    inverse-primary: #ffb77d,
+    primary-fixed: #ffdcc3,
+    primary-fixed-dim: #ffb77d,
+    on-primary-fixed: #2f1500,
+    on-primary-fixed-variant: #6e3900,
+    secondary: #7f5532,
+    on-secondary: #ffffff,
+    secondary-container: #ffdcc3,
+    on-secondary-container: #2f1500,
+    secondary-fixed: #ffdcc3,
+    secondary-fixed-dim: #f3bb90,
+    on-secondary-fixed: #2f1500,
+    on-secondary-fixed-variant: #643e1d,
+    tertiary: #5b6400,
+    on-tertiary: #ffffff,
+    tertiary-container: #dfea7f,
+    on-tertiary-container: #1a1e00,
+    tertiary-fixed: #dfea7f,
+    tertiary-fixed-dim: #c3ce67,
+    on-tertiary-fixed: #1a1e00,
+    on-tertiary-fixed-variant: #444b00,
+    background: #fef8f6,
+    on-background: #1d1b1a,
+    surface: #fef8f6,
+    surface-dim: #ded9d7,
+    surface-bright: #fef8f6,
+    surface-container-lowest: #ffffff,
+    surface-container-low: #f8f2f1,
+    surface-container: #f2edeb,
+    surface-container-high: #ece7e5,
+    surface-container-highest: #e7e1e0,
+    on-surface: #1d1b1a,
+    shadow: #000000,
+    scrim: #000000,
+    surface-tint: #685c54,
+    inverse-surface: #32302f,
+    inverse-on-surface: #f5f0ee,
+    outline: #7f756f,
+    outline-variant: #d1c4bc,
+    neutral: #797675,
+    neutral10: #1d1b1a,
+    error: #ba1a1a,
+    error-container: #ffdad6,
+    on-error: #ffffff,
+    on-error-container: #410002,
+    surface-variant: #eee0d7,
+    on-surface-variant: #4e453f,
+    neutral-variant: #80756e,
+    neutral-variant20: #372f29,
+    inverse-secondary: #f3bb90,
+    inverse-tertiary: #c3ce67,
+  ));
+}
+
+/* Dark Theme */
+.dark {
+  @include mat.theme-overrides((
+    primary: #ffb77d,
+    on-primary: #4d2600,
+    primary-container: #6e3900,
+    on-primary-container: #ffdcc3,
+    inverse-primary: #914d00,
+    primary-fixed: #ffdcc3,
+    primary-fixed-dim: #ffb77d,
+    on-primary-fixed: #2f1500,
+    on-primary-fixed-variant: #6e3900,
+    secondary: #f3bb90,
+    on-secondary: #4a2809,
+    secondary-container: #643e1d,
+    on-secondary-container: #ffdcc3,
+    secondary-fixed: #ffdcc3,
+    secondary-fixed-dim: #f3bb90,
+    on-secondary-fixed: #2f1500,
+    on-secondary-fixed-variant: #643e1d,
+    tertiary: #c3ce67,
+    on-tertiary: #2e3300,
+    tertiary-container: #444b00,
+    on-tertiary-container: #dfea7f,
+    tertiary-fixed: #dfea7f,
+    tertiary-fixed-dim: #c3ce67,
+    on-tertiary-fixed: #1a1e00,
+    on-tertiary-fixed-variant: #444b00,
+    background: #141312,
+    on-background: #e7e1e0,
+    surface: #141312,
+    surface-dim: #141312,
+    surface-bright: #3b3938,
+    surface-container-lowest: #0f0e0d,
+    surface-container-low: #1d1b1a,
+    surface-container: #211f1e,
+    surface-container-high: #2b2a29,
+    surface-container-highest: #363433,
+    on-surface: #e7e1e0,
+    shadow: #000000,
+    scrim: #000000,
+    surface-tint: #d3c4b9,
+    inverse-surface: #e7e1e0,
+    inverse-on-surface: #32302f,
+    outline: #998f88,
+    outline-variant: #4e453f,
+    neutral: #797675,
+    neutral10: #1d1b1a,
+    error: #ffb4ab,
+    error-container: #93000a,
+    on-error: #690005,
+    on-error-container: #ffdad6,
+    surface-variant: #4e453f,
+    on-surface-variant: #d1c4bc,
+    neutral-variant: #80756e,
+    neutral-variant20: #372f29,
+    inverse-secondary: #7f5532,
+    inverse-tertiary: #5b6400,
+  ));
+}
+
+/* Typography */
+:root, :host {
+  /* core typography tokens are not generating css variables, hence below */
+  --mat-sys-brand-font-family: Poppins;
+  --mat-sys-plain-font-family: Poppins;
+  --mat-sys-bold-font-weight: 700;
+  --mat-sys-medium-font-weight: 500;
+  --mat-sys-regular-font-weight: 400;
+
+  @include mat.theme-overrides((
+    brand-family: Poppins,
+    plain-family: Poppins,
+    bold-weight: 700,
+    medium-weight: 500,
+    regular-weight: 400,
+    headline-large-font: var(--mat-sys-brand-font-family),
+    headline-medium-font: var(--mat-sys-brand-font-family),
+    headline-small-font: var(--mat-sys-brand-font-family),
+    display-large-font: var(--mat-sys-brand-font-family),
+    display-medium-font: var(--mat-sys-brand-font-family),
+    display-small-font: var(--mat-sys-brand-font-family),
+    title-large-font: var(--mat-sys-brand-font-family),
+    body-large: var(--mat-sys-body-large-weight) var(--mat-sys-body-large-size) / var(--mat-sys-body-large-line-height) var(--mat-sys-body-large-font),
+    body-medium: var(--mat-sys-body-medium-weight) var(--mat-sys-body-medium-size) / var(--mat-sys-body-medium-line-height) var(--mat-sys-body-medium-font),
+    body-small: var(--mat-sys-body-small-weight) var(--mat-sys-body-small-size) / var(--mat-sys-body-small-line-height) var(--mat-sys-body-small-font),
+    label-large: var(--mat-sys-label-large-weight) var(--mat-sys-label-large-size) / var(--mat-sys-label-large-line-height) var(--mat-sys-label-large-font),
+    label-medium: var(--mat-sys-label-medium-weight) var(--mat-sys-label-medium-size) / var(--mat-sys-label-medium-line-height) var(--mat-sys-label-medium-font),
+    label-small: var(--mat-sys-label-small-weight) var(--mat-sys-label-small-size) / var(--mat-sys-label-small-line-height) var(--mat-sys-label-small-font),
+    title-large: var(--mat-sys-title-large-weight) var(--mat-sys-title-large-size) / var(--mat-sys-title-large-line-height) var(--mat-sys-title-large-font),
+    title-medium: var(--mat-sys-title-medium-weight) var(--mat-sys-title-medium-size) / var(--mat-sys-title-medium-line-height) var(--mat-sys-title-medium-font),
+    title-small: var(--mat-sys-title-small-weight) var(--mat-sys-title-small-size) / var(--mat-sys-title-small-line-height) var(--mat-sys-title-small-font),
+    headline-large: var(--mat-sys-headline-large-weight) var(--mat-sys-headline-large-size) / var(--mat-sys-headline-large-line-height) var(--mat-sys-headline-large-font),
+    headline-medium: var(--mat-sys-headline-medium-weight) var(--mat-sys-headline-medium-size) / var(--mat-sys-headline-medium-line-height) var(--mat-sys-headline-medium-font),
+    headline-small: var(--mat-sys-headline-small-weight) var(--mat-sys-headline-small-size) / var(--mat-sys-headline-small-line-height) var(--mat-sys-headline-small-font),
+    display-large: var(--mat-sys-display-large-weight) var(--mat-sys-display-large-size) / var(--mat-sys-display-large-line-height) var(--mat-sys-display-large-font),
+    display-medium: var(--mat-sys-display-medium-weight) var(--mat-sys-display-medium-size) / var(--mat-sys-display-medium-line-height) var(--mat-sys-display-medium-font),
+    display-small: var(--mat-sys-display-small-weight) var(--mat-sys-display-small-size) / var(--mat-sys-display-small-line-height) var(--mat-sys-display-small-font),
+    body-large-font: var(--mat-sys-plain-font-family),
+    body-medium-font: var(--mat-sys-plain-font-family),
+    body-small-font: var(--mat-sys-plain-font-family),
+    label-large-font: var(--mat-sys-plain-font-family),
+    label-medium-font: var(--mat-sys-plain-font-family),
+    label-small-font: var(--mat-sys-plain-font-family),
+    title-medium-font: var(--mat-sys-plain-font-family),
+    title-small-font: var(--mat-sys-plain-font-family),
+  ));
+}
