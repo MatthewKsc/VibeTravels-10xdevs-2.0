@@ -1,3 +1,5 @@
+@use './shared/styles/theme.scss' as theme;
 
 .app-content {
+  @include theme.content-with-navbar;
 }
