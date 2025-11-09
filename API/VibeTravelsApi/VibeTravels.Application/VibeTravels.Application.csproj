@@ -16,8 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Commands\Notes\Handlers\" />
-      <Folder Include="Queries\Notes\Handlers\" />
+      <Folder Include="Specifications\Profiles\" />
     </ItemGroup>
 
 </Project>

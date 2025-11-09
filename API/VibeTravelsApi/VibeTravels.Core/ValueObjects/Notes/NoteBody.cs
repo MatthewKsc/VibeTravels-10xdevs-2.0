@@ -11,7 +11,7 @@ public sealed record NoteBody
         if (string.IsNullOrWhiteSpace(value))
             throw new EmptyNoteBodyException();
         
-        if (value.Length is < 1000 or > 10000)
+        if (value.Length is < 100 or > 10000)
             throw new InvalidNoteBodyRangeException();
         
         Value = value;

@@ -1,0 +1,67 @@
+﻿@VibeTravelsApi_HostAddress = http://localhost:5131
+
+### Paste your access token here (get it from UsersApi signin)
+@accessToken = 
+
+### Test note ID (will be created in first request)
+@noteId =
+
+### 1) Get all notes for current user
+GET {{VibeTravelsApi_HostAddress}}/api/notes
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+
+### 2) Create a new note
+POST {{VibeTravelsApi_HostAddress}}/api/notes
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Trip to Paris",
+  "location": "Paris, France",
+  "content": "Amazing visit to the Eiffel Tower and Louvre Museum. The food was incredible! Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam urna tempor pulvinar vivamus fringilla lacus nec metus bibendum egestas iaculis massa nisl malesuada lacinia integer nunc posuere ut hendrerit semper vel class aptent taciti sociosqu ad litora torquent per conubia "
+}
+> {%
+    try {
+        const location = response.headers.valueOf("Location");
+        if (location) {
+            const parts = location.split('/');
+            const id = parts[parts.length - 1];
+            client.global.set("noteId", id);
+            client.log("Stored noteId: " + id);
+        }
+    } catch (e) { client.log("Parse error: " + e); }
+%}
+
+### 3) Get specific note by ID
+GET {{VibeTravelsApi_HostAddress}}/api/notes/{{noteId}}
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+
+### 4) Update note
+PUT {{VibeTravelsApi_HostAddress}}/api/notes/{{noteId}}
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Trip to Paris - Updated",
+  "location": "Paris, France",
+  "content": "Amazing visit to the Eiffel Tower and Louvre Museum. The food was incredible! Also visited Notre-Dame."
+}
+
+### 5) Delete note
+DELETE {{VibeTravelsApi_HostAddress}}/api/notes/{{noteId}}
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+
+### 6) Exception: Get note without authorization (expect 401)
+GET {{VibeTravelsApi_HostAddress}}/api/notes
+Accept: application/json
+
+### 7) Exception: Get non-existent note (expect 404 or similar error)
+GET {{VibeTravelsApi_HostAddress}}/api/notes/00000000-0000-0000-0000-000000000000
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+

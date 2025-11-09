@@ -1,4 +1,4 @@
-﻿using VibeTravels.Core.ValueObjects.Notes;
+﻿﻿using VibeTravels.Core.ValueObjects.Notes;
 using VibeTravels.Core.ValueObjects.User;
 
 namespace VibeTravels.Core.Entities;
@@ -33,4 +33,12 @@ public sealed class Note
     }
     
     public void MarkAsDeleted(DateTime deletedAt) => DeletedAt = deletedAt;
+    
+    public void UpdateDetails(NoteTitle title, NoteLocation location, NoteBody body, DateTime updatedAt)
+    {
+        Title = title;
+        Location = location;
+        Body = body;
+        UpdatedAt = updatedAt;
+    }
 }
