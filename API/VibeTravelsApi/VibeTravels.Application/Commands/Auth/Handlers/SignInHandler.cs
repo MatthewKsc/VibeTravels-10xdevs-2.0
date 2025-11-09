@@ -1,14 +1,14 @@
 ﻿using VibeTravels.Application.DTO;
-using VibeTravels.Application.Exceptions;
 using VibeTravels.Application.Exceptions.Auth;
 using VibeTravels.Application.Security;
 using VibeTravels.Application.Specifications.Users;
 using VibeTravels.Core.Entities;
 using VibeTravels.Core.Repositories;
 using VibeTravels.Core.ValueObjects;
+using VibeTravels.Core.ValueObjects.User;
 using VibeTravels.Shared.CQRS;
 
-namespace VibeTravels.Application.Commands.Handlers;
+namespace VibeTravels.Application.Commands.Auth.Handlers;
 
 public sealed class SignInHandler(
     IUserRepository userRepository,

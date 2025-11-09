@@ -7,7 +7,7 @@ A responsive single-page application (SPA) with a persistent app shell:
 - **Top navbar** with: brand, primary nav (**Notes**, **Plans**), and a **Profile menu** (Profile page, Theme toggle, Sign out).
 - **Authenticated routes only** for user resources; **/auth** is the only public route.
 - **Detail views** for Notes and Plans open via deep-linkable routes; **Generate Plan** is a drawer/dialog launched from **Note Detail**.
-- **English-only UI** with light/dark theme persisted on the Profile.
+- **English-only UI** with light/dark theme.
 - **Status-first Plans UX** using tabs and filter chips driven by API enums; polling on plan detail while generation is in progress.
 - **Accessibility** (WCAG 2.2 AA) and **security** (route guards, JWT in memory via interceptor) designed-in.
 
@@ -127,9 +127,9 @@ A responsive single-page application (SPA) with a persistent app shell:
 ### G) Profile
 
 - **Path**: `/profile`
-- **Main purpose**: Manage preferences (travel style, accommodation type, climate/region) and theme.
+- **Main purpose**: Manage preferences (travel style, accommodation type, climate/region).
 - **Key information to display**:
-  - Profile completeness indicator; theme selector (light/dark).
+  - Profile completeness indicator
 - **Key view components**:
   - `ProfileForm` (preferences optional; save marks profile complete)
   - `ThemeToggle` (optimistic update persisted via `/profiles/me`)
@@ -169,7 +169,7 @@ A responsive single-page application (SPA) with a persistent app shell:
 
 ### Secondary Journeys
 
-- **Profile-first flow**: After sign-in, user visits `/profile`, sets preferences and theme; Generate drawer no longer nudges.
+- **Profile-first flow**: After sign-in, user visits `/profile`, sets preferences; Generate drawer no longer nudges.
 - **Restore a note**: From deleted state (future surface), user restores via `:restore` then continues the primary journey.
 - **Cancel a running generation**: From Plan Detail, attempt cancel; messaging clarifies best-effort outcome.
 
@@ -179,7 +179,7 @@ A responsive single-page application (SPA) with a persistent app shell:
 
   - **Navbar**: Brand (click → `/notes`), Primary Nav (**Notes**, **Plans**), Profile menu (Profile, Theme toggle, Sign out).
   - **Route Guard**: Protects all routes except `/auth`; redirects 401 to `/auth`.
-  - **Theme**: Light/dark controlled at root; optimistic update with rollback on failure.
+  - **Theme**: Light/dark controlled at root.
 
 - **Routing**
 
@@ -210,7 +210,7 @@ A responsive single-page application (SPA) with a persistent app shell:
 8. **PlanRenderer**: Renders canonical plan JSON as Daily or Activity List; supports inline edit.
 9. **PlanActions**: Accept/Reject (optional reason), Retry, Cancel; guarded by generation state.
 10. **GenerationPoller**: Exponential backoff polling of `GET /plans/:id` until terminal state.
-11. **ProfileForm**: Preferences editor and theme toggle.
+11. **ProfileForm**: Preferences editor.
 12. **FilterChips & EnumChips**: Drive consistent filtering across views using `/meta/enums`.
 13. **ConfirmDialog**: Destructive action confirmations with clear consequences.
 14. **ErrorPanel & Snackbar**: Standardized display of `{ code, message, details?, correlationId }`.
@@ -251,4 +251,4 @@ A responsive single-page application (SPA) with a persistent app shell:
 - **US-07** Accept/Reject/Edit: `PlanActions`, `DecisionDialog`, `PlanRenderer` with inline editor, “Edited” badge.
 - **US-08** Secure access: `RouteGuard`, server-side 403; shallow error surfaces.
 - **US-09** Telemetry hooks (backend): Triggered on profile completion, plan creation, accept/reject; surfaced via `HttpInterceptor`/services.
-- **US-10** English-only + theme: Copy-only English; `ThemeToggle` persisted via `/profiles/me`.
+- **US-10** English-only + theme: Copy-only English; `ThemeToggle`.

@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using VibeTravels.Core.Exceptions.Email;
 
-namespace VibeTravels.Core.ValueObjects;
+namespace VibeTravels.Core.ValueObjects.User;
 
 public sealed record Email
 {

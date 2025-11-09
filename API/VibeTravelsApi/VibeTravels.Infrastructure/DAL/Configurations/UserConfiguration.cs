@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using VibeTravels.Core.Entities;
 using VibeTravels.Core.ValueObjects;
+using VibeTravels.Core.ValueObjects.User;
 
 namespace VibeTravels.Infrastructure.DAL.Configurations;
 

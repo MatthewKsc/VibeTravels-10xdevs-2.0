@@ -1,6 +1,6 @@
 ﻿using VibeTravels.Core.Exceptions;
 
-namespace VibeTravels.Core.ValueObjects;
+namespace VibeTravels.Core.ValueObjects.User;
 
 public sealed record UserId
 {
