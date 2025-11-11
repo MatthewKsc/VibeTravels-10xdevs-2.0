@@ -1,0 +1,10 @@
+.theme-toggle {
+  mat-icon {
+    transition: transform 0.3s ease;
+    color: var(--mat-sys-primary);
+  }
+
+  &:hover mat-icon {
+    transform: rotate(180deg);
+  }
+}

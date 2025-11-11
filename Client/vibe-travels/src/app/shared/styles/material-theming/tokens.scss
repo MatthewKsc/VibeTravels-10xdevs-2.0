@@ -1,0 +1,125 @@
+/* These tokens are generated using https://themes.angular-material.dev/ */
+/* Preview: https://themes.angular-material.dev/?bold-font-weight=700&brand-font-family=Poppins&medium-font-weight=500&plain-font-family=Poppins&regular-font-weight=400&seed-error=%23ba1a1a&seed-neutral=%2382756c&seed-neutral-variant=%23877365&seed-primary=%23D87D25&seed-secondary=%237f5532&seed-tertiary=%235b6400 */
+/* Seed Colors: primary: #D87D25, secondary: #7f5532, tertiary: #5b6400, error: #ba1a1a, neutral: #82756c, neutral-variant: #877365 */
+
+@use "@angular/material" as mat;
+
+// Primary Palette (Orange/Brown - #D87D25)
+$primary-palette: (
+  0: #000000,
+  10: #2f1500,
+  20: #4d2600,
+  25: #5e3100,
+  30: #6e3900,
+  35: #7f4200,
+  40: #914d00,
+  50: #b66100,
+  60: #d87d25,
+  70: #ffb77d,
+  80: #ffdcc3,
+  90: #ffede5,
+  95: #fff8f5,
+  98: #fffbff,
+  99: #fffbff,
+  100: #ffffff,
+);
+
+// Secondary Palette (Brown - #7f5532)
+$secondary-palette: (
+  0: #000000,
+  10: #2f1500,
+  20: #4a2809,
+  25: #563313,
+  30: #643e1d,
+  35: #724927,
+  40: #7f5532,
+  50: #9b6d48,
+  60: #b8875f,
+  70: #d6a177,
+  80: #f3bb90,
+  90: #ffdcc3,
+  95: #ffede5,
+  98: #fff8f5,
+  99: #fffbff,
+  100: #ffffff,
+);
+
+// Tertiary Palette (Green - #5b6400)
+$tertiary-palette: (
+  0: #000000,
+  10: #1a1e00,
+  20: #2e3300,
+  25: #3a3e00,
+  30: #444b00,
+  35: #505700,
+  40: #5b6400,
+  50: #747d00,
+  60: #8e9800,
+  70: #a9b31a,
+  80: #c3ce67,
+  90: #dfea7f,
+  95: #eef88c,
+  98: #f7ff9c,
+  99: #faffa3,
+  100: #ffffff,
+);
+
+// Error Palette
+$error-palette: (
+  0: #000000,
+  10: #410002,
+  20: #690005,
+  25: #7e0007,
+  30: #93000a,
+  35: #a80710,
+  40: #ba1a1a,
+  50: #de3730,
+  60: #ff5449,
+  70: #ff897d,
+  80: #ffb4ab,
+  90: #ffdad6,
+  95: #ffedea,
+  98: #fff8f7,
+  99: #fffbff,
+  100: #ffffff,
+);
+
+// Neutral Palette
+$neutral-palette: (
+  0: #000000,
+  10: #1d1b1a,
+  20: #32302f,
+  25: #3d3b3a,
+  30: #494645,
+  35: #555250,
+  40: #615d5c,
+  50: #797675,
+  60: #938f8e,
+  70: #aea9a8,
+  80: #c9c5c3,
+  90: #e5e1df,
+  95: #f4efed,
+  98: #fdf8f6,
+  99: #fffbff,
+  100: #ffffff,
+);
+
+// Neutral Variant Palette
+$neutral-variant-palette: (
+  0: #000000,
+  10: #372f29,
+  20: #4e453f,
+  25: #595049,
+  30: #655b54,
+  35: #71665f,
+  40: #80756e,
+  50: #998d86,
+  60: #b3a79f,
+  70: #cfc1b9,
+  80: #ebddd4,
+  90: #fff8f5,
+  95: #fff8f5,
+  98: #fffbff,
+  99: #fffbff,
+  100: #ffffff,
+);
