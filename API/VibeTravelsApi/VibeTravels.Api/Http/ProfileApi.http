@@ -1,0 +1,70 @@
+﻿@VibeTravelsApi_HostAddress = http://localhost:5131
+
+### Paste your access token here (get it from UsersApi signin)
+@accessToken = 
+
+### 1) Get user profile (returns null if profile doesn't exist)
+GET {{VibeTravelsApi_HostAddress}}/api/profiles/me
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+
+### 2) Create/Update profile with all preferences
+PUT {{VibeTravelsApi_HostAddress}}/api/profiles/me
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "travelStyle": "Adventure",
+  "accommodationPreference": "Hotel",
+  "climatePreference": "Tropical"
+}
+
+### 3) Update profile with different preferences
+PUT {{VibeTravelsApi_HostAddress}}/api/profiles/me
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "travelStyle": "Luxury",
+  "accommodationPreference": "Resort",
+  "climatePreference": "Mediterranean"
+}
+
+### 4) Exception: Invalid TravelStyle (expect 400 or similar error)
+PUT {{VibeTravelsApi_HostAddress}}/api/profiles/me
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "travelStyle": "InvalidStyle",
+  "accommodationPreference": "Hotel",
+  "climatePreference": "Tropical"
+}
+
+### 5) Exception: Invalid AccommodationType (expect 400 or similar error)
+PUT {{VibeTravelsApi_HostAddress}}/api/profiles/me
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "travelStyle": "Adventure",
+  "accommodationPreference": "InvalidAccommodation",
+  "climatePreference": "Tropical"
+}
+
+### 6) Exception: Invalid ClimateRegion (expect 400 or similar error)
+PUT {{VibeTravelsApi_HostAddress}}/api/profiles/me
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "travelStyle": "Adventure",
+  "accommodationPreference": "Hotel",
+  "climatePreference": "InvalidClimate"
+}
+

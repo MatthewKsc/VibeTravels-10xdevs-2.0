@@ -27,5 +27,5 @@ public sealed record ClimateRegion
     }
     
     public static implicit operator string(ClimateRegion climateRegion) => climateRegion.Value;
-    public static implicit operator ClimateRegion(string value) => new(value);
+    public static implicit operator ClimateRegion(string? value) => new(value ?? string.Empty);
 }
