@@ -1,6 +1,5 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using VibeTravels.Api.Extensions;
 using VibeTravels.Application.Commands.Notes;
 using VibeTravels.Application.DTO;
 using VibeTravels.Application.DTO.Requests;
@@ -20,7 +19,7 @@ public static class NoteEndpoints
                     HttpContext context,
                     IQueryHandler<GetNotes, NoteDto[]> handler) =>
                 {
-                    GetNotes query = new() { UserId = GetUserIdFromContext(context) };
+                    GetNotes query = new() { UserId = context.GetUserIdFromContext() };
                     return await handler.HandleAsync(query);
                 })
             .WithName("GetNotes");
@@ -31,7 +30,7 @@ public static class NoteEndpoints
                     HttpContext context,
                     IQueryHandler<GetNote, NoteDto> handler) =>
                 {
-                    GetNote query = new() { UserId = GetUserIdFromContext(context), NoteId = noteId };
+                    GetNote query = new() { UserId = context.GetUserIdFromContext(), NoteId = noteId };
                     return await handler.HandleAsync(query);
                 })
             .WithName("GetNote");
@@ -42,7 +41,7 @@ public static class NoteEndpoints
                     HttpContext context,
                     ICommandHandler<CreateNote> handler) =>
                 {
-                    CreateNote command = new(GetUserIdFromContext(context), request.Title, request.Location, request.Content);
+                    CreateNote command = new(context.GetUserIdFromContext(), request.Title, request.Location, request.Content);
                     await handler.HandleAsync(command);
                     return Results.Created();
                 })
@@ -55,7 +54,7 @@ public static class NoteEndpoints
                     HttpContext context,
                     ICommandHandler<UpdateNoteDetails> handler) =>
                 {
-                    UpdateNoteDetails command = new(GetUserIdFromContext(context), noteId, request.Title, request.Location, request.Content);
+                    UpdateNoteDetails command = new(context.GetUserIdFromContext(), noteId, request.Title, request.Location, request.Content);
                     await handler.HandleAsync(command);
                     return Results.NoContent();
                 })
@@ -67,23 +66,10 @@ public static class NoteEndpoints
                     HttpContext context,
                     ICommandHandler<DeleteNote> handler) =>
                 {
-                    DeleteNote command = new(GetUserIdFromContext(context), noteId);
+                    DeleteNote command = new(context.GetUserIdFromContext(), noteId);
                     await handler.HandleAsync(command);
                     return Results.NoContent();
                 })
             .WithName("DeleteNote");
-    }
-    
-    private static Guid GetUserIdFromContext(HttpContext context)
-    {
-        string? userIdClaim = context.User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value
-                              ?? context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        
-        if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out Guid userId))
-        {
-            throw new UnauthorizedAccessException("User ID not found in token.");
-        }
-        
-        return userId;
     }
 }
