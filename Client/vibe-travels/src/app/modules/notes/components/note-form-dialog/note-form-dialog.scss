@@ -1,0 +1,31 @@
+.note-form-dialog-container {
+  background-color: var(--system-secondary-background);
+  min-width: 60%;
+
+  mat-dialog-content {
+    padding-top: 1rem;
+  }
+  
+  .note-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .error-hint {
+    color: var(--mat-sys-error) !important;
+  }
+  
+  mat-dialog-actions {
+    gap: 0.5rem;
+  
+    mat-spinner {
+      margin-right: 0.5rem;
+    }
+  }
+}
+

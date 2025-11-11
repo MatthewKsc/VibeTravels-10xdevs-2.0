@@ -1,0 +1,95 @@
+<div class="note-form-dialog-container">
+    <h2 mat-dialog-title>{{ dialogTitle() }}</h2>
+    
+    <mat-dialog-content>
+      <form [formGroup]="noteForm" class="note-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Title</mat-label>
+          <input 
+            matInput 
+            formControlName="title" 
+            placeholder="Enter note title"
+            maxlength="200"
+            required>
+          @if (title?.invalid && title?.touched) {
+            <mat-error>
+              @if (title?.errors?.['required']) {
+                Title is required
+              }
+              @if (title?.errors?.['maxlength']) {
+                Title must be 200 characters or less
+              }
+            </mat-error>
+          }
+          <mat-hint align="end">{{ title?.value?.length || 0 }}/200</mat-hint>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Location</mat-label>
+          <input 
+            matInput 
+            formControlName="location" 
+            placeholder="Enter location"
+            maxlength="255"
+            required>
+          @if (location?.invalid && location?.touched) {
+            <mat-error>
+              @if (location?.errors?.['required']) {
+                Location is required
+              }
+              @if (location?.errors?.['maxlength']) {
+                Location must be 255 characters or less
+              }
+            </mat-error>
+          }
+          <mat-hint align="end">{{ location?.value?.length || 0 }}/255</mat-hint>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Content</mat-label>
+          <textarea 
+            matInput 
+            formControlName="content" 
+            placeholder="Enter note content (minimum 100 characters)"
+            rows="10"
+            maxlength="10000"
+            required></textarea>
+          @if (content?.invalid && content?.touched) {
+            <mat-error>
+              @if (content?.errors?.['required']) {
+                Content is required
+              }
+              @if (content?.errors?.['minlength']) {
+                Content must be at least 100 characters
+              }
+              @if (content?.errors?.['maxlength']) {
+                Content must be 10000 characters or less
+              }
+            </mat-error>
+          }
+          <mat-hint align="end" [class.error-hint]="contentLength() < 100">
+            {{ contentLength() }}/10000 (minimum: 100)
+          </mat-hint>
+        </mat-form-field>
+      </form>
+    </mat-dialog-content>
+    
+    <mat-dialog-actions align="end">
+      @if (processingRequest()) {
+        <mat-spinner diameter="24"></mat-spinner>
+      }
+      <button 
+        mat-button 
+        (click)="cancel()"
+        [disabled]="processingRequest()">
+        Cancel
+      </button>
+      <button 
+        mat-raised-button 
+        color="primary"
+        (click)="save()"
+        [disabled]="noteForm.invalid || processingRequest()">
+        {{ isAddMode() ? 'Add Note' : 'Save Changes' }}
+      </button>
+    </mat-dialog-actions>
+</div>

@@ -1,3 +1,8 @@
 <div class="notes-root-wrapper">
-    <p>notes-root works!</p>
+  <app-notes-toolbar (addNoteClick)="onAddNote()" />
+  <app-notes-list 
+    [notes]="notes() ?? []"
+    (noteViewClick)="onViewNote($event)"
+    (noteEditClick)="onEditNote($event)"
+    (noteDeleteClick)="onDeleteNote($event)" />
 </div>

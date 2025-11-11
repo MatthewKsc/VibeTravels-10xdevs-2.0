@@ -1,0 +1,7 @@
+@use '../../../../shared/styles/theme.scss' as theme;
+
+.notes-root-wrapper {
+  @include theme.default-vibe-travels-view-wrapper;
+  display: flex;
+  flex-direction: column;
+}
