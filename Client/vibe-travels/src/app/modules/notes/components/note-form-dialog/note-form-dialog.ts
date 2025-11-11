@@ -91,10 +91,7 @@ export class NoteFormDialog {
           this.notificationService.notifySuccess(this.getSuccessMessage());
           this.dialogRef.close(true);
         },
-        error: (error) => {
-          console.error('Error saving note:', error);
-          this.notificationService.notifyError(this.getErrorMessage());
-        }
+        error: (error) => this.notificationService.notifyError(this.getErrorMessage()),
       });
   }
 

@@ -108,10 +108,7 @@ export class NotesRoot {
       )
       .subscribe({
         next: (notes: Note[]) => this.notes.set(notes),
-        error: (error: any) => {
-          console.error('Error fetching notes:', error);
-          this.notificationService.notifyError('Failed to load notes. Please try again.');
-        }
+        error: (error: any) => this.notificationService.notifyError('Failed to load notes. Please try again.'),
       });
   }
 
@@ -125,10 +122,7 @@ export class NotesRoot {
           this.notificationService.notifySuccess('Note deleted successfully!');
           this.fetchNotes();
         },
-        error: (error) => {
-          console.error('Error deleting note:', error);
-          this.notificationService.notifyError('Failed to delete note. Please try again.');
-        }
+        error: (error) => this.notificationService.notifyError('Failed to delete note. Please try again.'),
       });
   }
 

@@ -1,1 +1,81 @@
-<p>user-profile works!</p>
+<div class="user-profile-container">
+  <div class="profile-header">
+    <button 
+      mat-icon-button 
+      (click)="goBack()" 
+      aria-label="Go back to notes"
+      class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Travel Preferences</h1>
+  </div>
+
+  @if (loadingData()) {
+    <div class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  } @else {
+    <form [formGroup]="profileForm" class="profile-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Travel Style</mat-label>
+        <mat-select 
+          formControlName="travelStyle" 
+          placeholder="Select your travel style"
+          required>
+          @for (style of travelStyles; track style) {
+            <mat-option [value]="style">{{ style }}</mat-option>
+          }
+        </mat-select>
+        @if (profileForm.get('travelStyle')?.invalid && profileForm.get('travelStyle')?.touched) {
+          <mat-error>Travel style is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Accommodation Preference</mat-label>
+        <mat-select 
+          formControlName="accommodationPreference" 
+          placeholder="Select your accommodation preference"
+          required>
+          @for (accommodation of accommodations; track accommodation) {
+            <mat-option [value]="accommodation">{{ accommodation }}</mat-option>
+          }
+        </mat-select>
+        @if (profileForm.get('accommodationPreference')?.invalid && profileForm.get('accommodationPreference')?.touched) {
+          <mat-error>Accommodation preference is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Climate Preference</mat-label>
+        <mat-select 
+          formControlName="climatePreference" 
+          placeholder="Select your climate preference"
+          required>
+          @for (climate of climateRegions; track climate) {
+            <mat-option [value]="climate">{{ climate }}</mat-option>
+          }
+        </mat-select>
+        @if (profileForm.get('climatePreference')?.invalid && profileForm.get('climatePreference')?.touched) {
+          <mat-error>Climate preference is required</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button 
+          mat-raised-button 
+          color="primary" 
+          (click)="updateProfile()"
+          [disabled]="!isFormValid() || processingRequest()"
+          type="button">
+          @if (processingRequest()) {
+            <mat-spinner diameter="20"></mat-spinner>
+          } @else {
+            Update Preferences
+          }
+        </button>
+      </div>
+    </form>
+  }
+</div>
+
