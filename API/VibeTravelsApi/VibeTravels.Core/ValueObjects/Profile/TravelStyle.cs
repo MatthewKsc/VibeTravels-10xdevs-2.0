@@ -6,7 +6,7 @@ public sealed record TravelStyle
 {
     public string Value { get; }
     
-    //TODO: POC - TravelStyle types will be in DB and CONSTATS
+    //TODO: MVP - TravelStyle types will be in DB and CONSTATS
     private static readonly HashSet<string> AllowedValues = new(StringComparer.OrdinalIgnoreCase)
     {
         "Adventure", "Relaxation", "Cultural", "Luxury", "Budget", "Family", "Solo", "Romantic"

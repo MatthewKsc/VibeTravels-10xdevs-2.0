@@ -6,7 +6,7 @@ public sealed record ClimateRegion
 {
     public string Value { get; }
     
-    //TODO: POC - ClimateRegion types will be in DB and CONSTATS
+    //TODO: MVP - ClimateRegion types will be in DB and CONSTATS
     private static readonly HashSet<string> AllowedValues = new(StringComparer.OrdinalIgnoreCase)
     {
         "Tropical", "Arid", "Temperate", "Continental", "Polar", "Mediterranean", "Subtropical"

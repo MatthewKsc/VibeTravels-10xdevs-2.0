@@ -60,11 +60,11 @@ A responsive single-page application (SPA) with a persistent app shell:
     - Live character counters/validators
     - Markdown editor + Preview (`EditorTabs`)
     - Autosave to localStorage until body ≥ 1000 chars, then enable Save
-  - `NoteActions` (Save, Delete with confirm, Restore when applicable)
+  - `NoteActions` (Save, Delete with confirm)
   - `GeneratePlanButton` (opens drawer/dialog)
 - **UX, accessibility, and security considerations**:
   - Explain validation early; disable Save until minimum body length.
-  - Confirm destructive actions; undo toast on Restore where applicable.
+  - Confirm destructive actions;
   - Keep JWT in memory; PUT is full replace—guard unsaved changes with leave prompts.
 - **Mapped PRD stories**: US-03, US-04, US-08, US-10.
 
@@ -170,7 +170,6 @@ A responsive single-page application (SPA) with a persistent app shell:
 ### Secondary Journeys
 
 - **Profile-first flow**: After sign-in, user visits `/profile`, sets preferences; Generate drawer no longer nudges.
-- **Restore a note**: From deleted state (future surface), user restores via `:restore` then continues the primary journey.
 - **Cancel a running generation**: From Plan Detail, attempt cancel; messaging clarifies best-effort outcome.
 
 ## 4. Layout and Navigation Structure
@@ -222,7 +221,7 @@ A responsive single-page application (SPA) with a persistent app shell:
 
 - **Auth**: `POST /users/signin`, `POST /users/signup`
 - **Profile**: `GET /profiles/me`, `PUT /profiles/me`
-- **Notes List/Detail**: `GET /notes`, `POST /notes`, `GET /notes/{id}`, `PUT /notes/{id}`, `DELETE /notes/{id}`, `POST /notes/{id}:restore`
+- **Notes List/Detail**: `GET /notes`, `POST /notes`, `GET /notes/{id}`, `PUT /notes/{id}`, `DELETE /notes/{id}`
 - **Generate Plan**: `POST /plans`
 - **Plans List/Detail**: `GET /plans`, `GET /plans/{id}`, `PUT /plans/{id}`, `POST /plans/{id}:accept`, `:reject`, `:retry`, `:cancel`, `DELETE /plans/{id}`
 - **Enums/Meta**: `GET /meta/enums`
@@ -237,7 +236,7 @@ A responsive single-page application (SPA) with a persistent app shell:
 - Generation fails → visible error on Plan Detail + **Retry** action.
 - Cancel is best-effort → feedback that result may still complete.
 - Accept conflict (409) → banner with deep link to accepted plan for that note.
-- Soft-deleted notes invisible by default; restore path via note detail when surfaced.
+- Soft-deleted notes invisible by default;
 - Network/offline → retry toasts; preserve drafts locally.
 - Editing an accepted plan preserves **Accepted** state; show “Edited” badge.
 
