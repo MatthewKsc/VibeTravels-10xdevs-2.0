@@ -10,7 +10,6 @@ import { IHomeFeature } from './home.model';
   imports: [MatCardModule, MatButtonModule, MatIconModule, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
   readonly features: IHomeFeature[] = [

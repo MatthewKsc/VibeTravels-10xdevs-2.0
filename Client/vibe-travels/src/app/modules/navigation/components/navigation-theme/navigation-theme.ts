@@ -9,7 +9,6 @@ import { Theme } from '../../models/navigation.type';
   imports: [MatIconModule, MatButtonModule, MatTooltipModule],
   templateUrl: './navigation-theme.html',
   styleUrl: './navigation-theme.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationTheme {
   readonly currentTheme = signal<Theme>('light');

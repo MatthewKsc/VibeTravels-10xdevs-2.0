@@ -1,7 +1,7 @@
 import { NavigationOption } from "./navigation.model";
 
 export const unauthenticatedOptions: NavigationOption[] = [
-  { label: 'Sign In', route: '/auth', icon: 'login' },
+  { label: 'Sign In', route: '/auth/sign-in', icon: 'login' },
 ];
 
 export const authenticatedOptions: NavigationOption[] = [

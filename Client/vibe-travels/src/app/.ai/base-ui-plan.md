@@ -185,8 +185,6 @@ A responsive single-page application (SPA) with a persistent app shell:
   - Public: `/auth`
   - Private:
     - `/notes`
-    - `/notes/new`
-    - `/notes/:noteId`
     - `/plans`
     - `/plans/:planId`
     - `/profile`

@@ -5,10 +5,6 @@ import { environment } from '../../../environments/environments';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
-
-  if (!environment.production) {
-    authService.setDevelopmentToken();
-  }
   
   const token = authService.getToken();
 
