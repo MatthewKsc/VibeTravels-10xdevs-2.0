@@ -31,6 +31,7 @@ html {
 
   // Custom theme variables for light mode
   --system-secondary-background: whitesmoke;
+  --mat-sys-surface-container: whitesmoke;
   --mat-icon-color: var(--mat-sys-primary);
 }
 
@@ -54,6 +55,7 @@ html {
 
   // Custom theme variables for dark mode
   --system-secondary-background: #292323;
+  --mat-sys-surface-container: #292323;
   --mat-icon-color: var(--mat-sys-primary);
 }
 

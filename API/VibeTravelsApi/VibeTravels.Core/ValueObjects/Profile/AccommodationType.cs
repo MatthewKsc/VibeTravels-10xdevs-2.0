@@ -1,5 +1,7 @@
 ﻿using VibeTravels.Core.Exceptions.Profile;
 
+namespace VibeTravels.Core.ValueObjects.Profile;
+
 public sealed record AccommodationType
 {
     public string Value { get; }
@@ -19,11 +21,11 @@ public sealed record AccommodationType
         }
         
         if (!AllowedValues.Contains(value))
-            throw new InvalidClimateRegionException();
+            throw new InvalidAccommodationTypeException();
         
         Value = value;
     }
     
     public static implicit operator string(AccommodationType climateRegion) => climateRegion.Value;
-    public static implicit operator AccommodationType(string value) => new(value);
+    public static implicit operator AccommodationType(string? value) => new(value ?? string.Empty);
 }

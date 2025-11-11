@@ -1,6 +1,5 @@
 ﻿using VibeTravels.Application.DTO;
 using VibeTravels.Application.Exceptions.Notes;
-using VibeTravels.Application.Queries.Notes;
 using VibeTravels.Application.Specifications.Notes;
 using VibeTravels.Core.Entities;
 using VibeTravels.Core.Repositories;
@@ -8,6 +7,8 @@ using VibeTravels.Core.ValueObjects.Notes;
 using VibeTravels.Core.ValueObjects.User;
 using VibeTravels.Shared.CQRS;
 using VibeTravels.Shared.Specifications;
+
+namespace VibeTravels.Application.Queries.Notes.Handlers;
 
 public sealed class GetNoteHandler(INoteRepository noteRepository) : IQueryHandler<GetNote, NoteDto>
 {

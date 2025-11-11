@@ -1,4 +1,4 @@
-﻿﻿using VibeTravels.Application.DTO;
+﻿using VibeTravels.Application.DTO;
 using VibeTravels.Shared.CQRS;
 
 namespace VibeTravels.Application.Queries.Notes;

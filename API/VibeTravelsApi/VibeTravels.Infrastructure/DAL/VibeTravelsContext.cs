@@ -1,4 +1,4 @@
-﻿﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using VibeTravels.Core.Entities;
 
 namespace VibeTravels.Infrastructure.DAL;

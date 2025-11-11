@@ -30,5 +30,14 @@ public sealed class Profile
         CompletedAt = completedAt;
         UpdatedAt = updatedAt;
     }
+    
+    public void UpdateDetails(TravelStyle travelStyle, AccommodationType accommodationType, ClimateRegion climateRegion, DateTime updatedAt)
+    {
+        TravelStyle = travelStyle;
+        AccommodationType = accommodationType;
+        ClimateRegion = climateRegion;
+        UpdatedAt = updatedAt;
+        CompletedAt = updatedAt;
+    }
 }
 

@@ -1,4 +1,4 @@
-﻿﻿using VibeTravels.Core.ValueObjects.Notes;
+﻿using VibeTravels.Core.ValueObjects.Notes;
 using VibeTravels.Core.ValueObjects.User;
 
 namespace VibeTravels.Core.Entities;
