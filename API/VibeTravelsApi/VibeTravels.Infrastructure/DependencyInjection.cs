@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Scalar.AspNetCore;
+using VibeTravels.Infrastructure.Cors;
 using VibeTravels.Infrastructure.DAL;
 using VibeTravels.Infrastructure.Logging;
 using VibeTravels.Infrastructure.Middlewares;
@@ -28,7 +29,9 @@ public static class DependencyInjection
 
         services.AddPostgres(configuration);
         services.AddCommandHandlerLogging();
-        // services.AddQueryHandlerLogging(); use when query will be implemented
+        services.AddQueryHandlerLogging();
+
+        services.AddCorsSettings(configuration);
     }
 
     public static void UseInfrastructure(this WebApplication application)
@@ -40,6 +43,8 @@ public static class DependencyInjection
             application.MapOpenApi();
             application.MapScalarApiReference();
         }
+        
+        application.UseCors();
         
         application.UseAuthentication();
         application.UseAuthorization();
