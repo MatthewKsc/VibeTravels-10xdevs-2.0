@@ -53,13 +53,13 @@ A responsive single-page application (SPA) with a persistent app shell:
 - **Path**: `/notes/:noteId` and `/notes/new`
 - **Main purpose**: Create or edit a note; launch **Generate Plan**.
 - **Key information to display**:
-  - Required fields: **title** (1–200), **location** (1–255), **bodyMd** (1000–10000).
+  - Required fields: **title** (1–200), **location** (1–255), **bodyMd** (100–10000).
   - Timestamps; ownership (implicitly the current user).
 - **Key view components**:
   - `NoteEditor` with:
     - Live character counters/validators
     - Markdown editor + Preview (`EditorTabs`)
-    - Autosave to localStorage until body ≥ 1000 chars, then enable Save
+    - Autosave to localStorage until body ≥ 100 chars, then enable Save
   - `NoteActions` (Save, Delete with confirm)
   - `GeneratePlanButton` (opens drawer/dialog)
 - **UX, accessibility, and security considerations**:
@@ -158,7 +158,7 @@ A responsive single-page application (SPA) with a persistent app shell:
 ### Primary Journey: From idea → accepted plan
 
 1. **Authenticate** (US-01): `/auth` → Successful sign-in redirects to last-intended route or `/notes`.
-2. **Capture idea** (US-03): `/notes` → “New note” → `/notes/new`. User writes title/location/body. Live counters guide the 1000–10000 char requirement; Save.
+2. **Capture idea** (US-03): `/notes` → “New note” → `/notes/new`. User writes title/location/body. Live counters guide the 100–10000 char requirement; Save.
 3. **Open note**: `/notes/:noteId` shows saved note. User clicks **Generate Plan**.
 4. **Set parameters** (US-04): Generate drawer opens. Days and travelers entered (or left blank). Non-blocking **Profile** nudge shown if incomplete; optional jump to `/profile`.
 5. **Queue plan** (US-05): User submits. App posts `/plans` then navigates to `/plans/:planId`; `GenerationPoller` starts (status chips show **queued/running**).

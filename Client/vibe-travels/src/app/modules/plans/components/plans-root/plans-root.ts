@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-profile-root',
+  selector: 'app-plans-root',
   imports: [],
-  templateUrl: './profile-root.html',
-  styleUrl: './profile-root.scss',
+  templateUrl: './plans-root.html',
+  styleUrl: './plans-root.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileRoot {
+export class PlansRoot {
 
 }
