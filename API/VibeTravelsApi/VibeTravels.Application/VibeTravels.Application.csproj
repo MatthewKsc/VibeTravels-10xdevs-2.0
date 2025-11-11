@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Queries\" />
+      <Folder Include="Specifications\Profiles\" />
     </ItemGroup>
 
 </Project>

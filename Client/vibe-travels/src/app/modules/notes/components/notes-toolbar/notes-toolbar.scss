@@ -1,0 +1,16 @@
+.notes-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.toolbar-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--mat-sys-primary);
+  letter-spacing: -0.02em;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}

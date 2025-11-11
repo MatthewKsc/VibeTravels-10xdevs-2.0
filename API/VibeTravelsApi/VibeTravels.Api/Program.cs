@@ -18,6 +18,7 @@ app.UseInfrastructure();
 
 RouteGroupBuilder api = app.MapGroup("/api");
 api.MapUserEndpoints();
+api.MapNoteEndpoints();
 
 try
 {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using VibeTravels.Application.Commands;
+using VibeTravels.Application.Commands.Auth;
 using VibeTravels.Application.DTO;
 using VibeTravels.Application.Security;
 using VibeTravels.Shared.CQRS;

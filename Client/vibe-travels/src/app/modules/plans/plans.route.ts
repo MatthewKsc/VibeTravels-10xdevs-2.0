@@ -3,7 +3,7 @@ import { Routes } from "@angular/router";
 export const PLANS_ROUTE: Routes = [
   {
     path: '',
-    loadComponent: () => import('./components/profile-root/profile-root').then(m => m.ProfileRoot)
+    loadComponent: () => import('./components/plans-root/plans-root').then(m => m.PlansRoot)
   },
   {
     path: '**',

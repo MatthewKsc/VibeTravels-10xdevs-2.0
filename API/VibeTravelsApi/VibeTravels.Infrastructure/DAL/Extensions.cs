@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VibeTravels.Core.Repositories;
@@ -23,5 +23,6 @@ internal static class Extensions
         });
 
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<INoteRepository, NoteRepository>();
     }
 }

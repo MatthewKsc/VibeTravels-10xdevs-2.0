@@ -28,10 +28,6 @@
     color: var(--mat-sys-primary);
     background-color: var(--mat-sys-primary-container);
   }
-
-  &:hover:not(.active) {
-    background-color: var(--mat-sys-surface-container-high);
-  }
 }
 
 .user-menu-button {

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿﻿using Microsoft.EntityFrameworkCore;
 using VibeTravels.Core.Entities;
 
 namespace VibeTravels.Infrastructure.DAL;
@@ -6,6 +6,8 @@ namespace VibeTravels.Infrastructure.DAL;
 public class VibeTravelsContext: DbContext
 {
     public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Note> Notes { get; set; }
+    public virtual DbSet<Profile> Profiles { get; set; }
     
     public VibeTravelsContext() { }
 
