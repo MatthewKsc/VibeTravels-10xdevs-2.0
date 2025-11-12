@@ -25,5 +25,8 @@ internal static class Extensions
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<INoteRepository, NoteRepository>();
         services.AddScoped<IProfileRepository, ProfileRepository>();
+        services.AddScoped<ITripRequestRepository, TripRequestRepository>();
+        services.AddScoped<IPlanGenerationRepository, PlanGenerationRepository>();
+        services.AddScoped<IPlanRepository, PlanRepository>();
     }
 }

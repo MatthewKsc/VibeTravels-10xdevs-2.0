@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VibeTravels.Infrastructure.DAL;
@@ -11,9 +12,11 @@ using VibeTravels.Infrastructure.DAL;
 namespace VibeTravels.Infrastructure.DAL.Migrations
 {
     [DbContext(typeof(VibeTravelsContext))]
-    partial class VibeTravelsContextModelSnapshot : ModelSnapshot
+    [Migration("20251112220305_PlanTables")]
+    partial class PlanTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
