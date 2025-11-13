@@ -1,1 +1,8 @@
-<p>Plans Working</p>
+<div class="plans-root-wrapper">
+  <app-plans-toolbar />
+  <app-plans-list 
+    [plans]="plans() ?? []"
+    (viewPlanClick)="onViewPlan($event)"
+    (retryPlanClick)="onRetryPlan($event)"
+    (deletePlanClick)="onDeletePlan($event)" />
+</div>

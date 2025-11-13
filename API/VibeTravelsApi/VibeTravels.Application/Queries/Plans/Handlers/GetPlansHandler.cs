@@ -73,7 +73,7 @@ public sealed class GetPlansHandler(
             StartDate: generation.TripRequest.StartDate,
             StructureType: nameof(PlanStructure.Daily).ToLower(),
             GenerationStatus: generation.Status.ToString().ToLower(),
-            DecisionStatus: null,
+            DecisionStatus: nameof(PlanStatus.NotGenerated).ToLower(),
             ContentMd: null,
             ErrorMessage: generation.ErrorMessage,
             LastUpdatedAt: generation.CreatedAt

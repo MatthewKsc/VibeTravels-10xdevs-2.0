@@ -7,7 +7,7 @@ public sealed record PlanDto(
     DateTime StartDate,
     string StructureType,
     string GenerationStatus,
-    string? DecisionStatus,
+    string DecisionStatus,
     string? ContentMd,
     string? ErrorMessage,
     DateTime LastUpdatedAt);

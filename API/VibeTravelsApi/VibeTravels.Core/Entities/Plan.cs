@@ -80,5 +80,16 @@ public sealed class Plan
         AdjustedByUser = false;
         UpdatedAt = updatedAt;
     }
+
+    public void UpdateFromRegeneration(string content, int? daysCount, DateTime updatedAt)
+    {
+        Content = content;
+        DaysCount = daysCount;
+        Status = PlanStatus.Generated;
+        DecisionAt = null;
+        DecisionReason = null;
+        AdjustedByUser = false;
+        UpdatedAt = updatedAt;
+    }
 }
 

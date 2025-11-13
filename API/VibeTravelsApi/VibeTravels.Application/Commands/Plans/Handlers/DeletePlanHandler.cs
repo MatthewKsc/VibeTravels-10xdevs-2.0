@@ -9,7 +9,10 @@ using VibeTravels.Shared.Specifications;
 
 namespace VibeTravels.Application.Commands.Plans.Handlers;
 
-public sealed class DeletePlanHandler(IPlanRepository planRepository) : ICommandHandler<DeletePlan>
+public sealed class DeletePlanHandler(
+    IPlanRepository planRepository,
+    IPlanGenerationRepository planGenerationRepository,
+    ITripRequestRepository tripRequestRepository) : ICommandHandler<DeletePlan>
 {
     public async Task HandleAsync(DeletePlan command)
     {
@@ -25,5 +28,7 @@ public sealed class DeletePlanHandler(IPlanRepository planRepository) : ICommand
             throw new PlanNotFoundException(planId);
 
         await planRepository.DeletePlan(plan);
+        await planGenerationRepository.DeletePlanGeneration(plan.PlanGeneration);
+        await tripRequestRepository.DeleteTripRequest(plan.TripRequest);
     }
 }

@@ -1,0 +1,18 @@
+<div class="plans-grid">
+  @if (plans().length === 0) {
+    <div class="empty-state">
+      <h2>No plans yet</h2>
+      <p>Generate travel plans from your notes to get started</p>
+    </div>
+  } @else {
+    @for (plan of plans(); track plan.id) {
+      <app-plan-card 
+        [plan]="plan"
+        (viewPlanClick)="onViewPlan($event)"
+        (retryPlanClick)="onRetryPlan($event)"
+        (deletePlanClick)="onDeletePlan($event)"
+        (acceptPlanClick)="onAcceptPlan($event)"
+        (rejectPlanClick)="onRejectPlan($event)" />
+    }
+  }
+</div>

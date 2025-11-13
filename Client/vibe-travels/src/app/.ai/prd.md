@@ -2,17 +2,16 @@
 
 ## 1. Product Overview
 
-VibeTravels is an MVP web app that converts simple trip notes into actionable itineraries using AI. The core of the MVP is full CRUD for trip notes, plus AI-powered plan generation that respects a user’s basic travel preferences and parameters such as number of days and travelers. The app operates only in English and uses a minimal email + password account system.
+VibeTravels is an MVP web app that converts simple trip notes into actionable itineraries using AI. The core of the MVP is full CRUD for trip notes, plus AI-powered plan generation that respects a user’s basic travel preferences and parameters such as number of days, travelers and possible start date. The app operates only in English and uses a minimal email + password account system.
 
-In scope for MVP:
+Current MVP (Implemented / In-flight):
 
-- Email + password authentication
-- User profile with basic travel preferences
-- Full CRUD for notes with a minimal required structure
-- AI plan generation using a selected note and basic parameters (days, travelers)
-- Plan history with accept/reject (optional rejection reason) and editable accepted plans
-- Simple light/dark theming
-- Telemetry for profile completion, plan counts, and accept/reject decisions
+- Email + password authentication (`/auth/sign-in`, `/auth/sign-up`)
+- User profile with basic travel preferences (`/user/profile`)
+- Full CRUD for notes (title, location, content) on a single list view (`/notes`)
+- Single plan generation PER note triggered directly from the notes list (no separate note selection flow, no multi-plan support yet)
+- Plans list (`/plans`) showing generated plans (no accept/reject lifecycle yet)
+- Light/dark styling (basic theme)
 
 ## 2. User Problem
 
@@ -38,7 +37,7 @@ Planning engaging trips is hard. People keep fragmented, unstructured ideas abou
 
 ### 3.4 Trip Parameters and AI Generation
 
-- Dedicated fields for number of days and number of travelers (separate from note body)
+- Dedicated fields for number of days, number of travelers and start date (separate from note body)
 - If days are provided, output is a day-by-day itinerary; otherwise, an activity list
 - No AI usage limits in MVP
 - Multiple generations can run in parallel; each generation has its own status
@@ -120,10 +119,10 @@ US-03
 US-04
 
 - Title: Prepare a trip request (select one note and parameters)
-- Description: As a signed-in user, I want to select one note and specify days and travelers to define the input for AI plan generation.
+- Description: As a signed-in user, I want to select one note and specify days, travelers, and start date to define the input for AI plan generation.
 - Acceptance criteria:
   - I can select exactly one note for a single request.
-  - Days and travelers accept positive integers or can be left blank.
+  - Days, travelers accept positive integers with start date.
   - Invalid values are rejected with clear messages.
 
 US-05

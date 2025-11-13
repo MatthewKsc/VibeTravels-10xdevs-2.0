@@ -95,21 +95,13 @@ public sealed class PlanGenerationBackgroundService(
 
             await MarkPlanGenerationAsSucceeded(planGeneration, planGenerationRepository, aiResponse);
 
-            Plan plan = new(
-                new PlanId(Guid.NewGuid()),
-                planGeneration.UserId,
-                planGeneration.TripRequestId,
-                planGeneration.Id,
-                PlanStructure.Daily,
-                inputPayload.TripRequest.TravelDays,
-                aiResponse,
-                DateTime.UtcNow,
-                DateTime.UtcNow
-            );
+            await CreateOrUpdatePlan(
+                planRepository,
+                planGeneration,
+                inputPayload,
+                aiResponse);
 
-            await planRepository.AddPlan(plan);
-
-            logger.LogInformation("Successfully created plan {PlanId} for generation {GenerationId}", plan.Id.Value, planGeneration.Id.Value);
+            logger.LogInformation("Successfully processed plan for generation {GenerationId}", planGeneration.Id.Value);
         }
         catch (InvalidPlanGenerationPayloadException ex)
         {
@@ -134,6 +126,40 @@ public sealed class PlanGenerationBackgroundService(
     {
         planGeneration.MarkAsSucceeded(DateTime.UtcNow, aiResponse);
         await planGenerationRepository.UpdatePlanGeneration(planGeneration);
+    }
+
+    private static async Task CreateOrUpdatePlan(
+        IPlanRepository planRepository,
+        PlanGeneration planGeneration,
+        PlanInputPayload inputPayload,
+        string aiResponse)
+    {
+        Plan? existingPlan = await planRepository
+            .GetPlanOrDefault(new Specifications.Plans.PlanGenerationIdSpecification(planGeneration.Id));
+
+        if (existingPlan is not null)
+        {
+            existingPlan.UpdateFromRegeneration(
+                aiResponse,
+                inputPayload.TripRequest.TravelDays,
+                DateTime.UtcNow);
+            await planRepository.UpdatePlan(existingPlan);
+        }
+        else
+        {
+            Plan plan = new(
+                new PlanId(Guid.NewGuid()),
+                planGeneration.UserId,
+                planGeneration.TripRequestId,
+                planGeneration.Id,
+                PlanStructure.Daily,
+                inputPayload.TripRequest.TravelDays,
+                aiResponse,
+                DateTime.UtcNow,
+                DateTime.UtcNow
+            );
+            await planRepository.AddPlan(plan);
+        }
     }
 
     private static async Task MarkPlanGenerationAsStarted(PlanGeneration planGeneration, IPlanGenerationRepository planGenerationRepository)
