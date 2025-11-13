@@ -67,12 +67,126 @@ namespace VibeTravels.Infrastructure.DAL.Migrations
                     b.ToTable("Notes", (string)null);
                 });
 
+            modelBuilder.Entity("VibeTravels.Core.Entities.Plan", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("AdjustedByUser")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<int?>("DaysCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("days_count");
+
+                    b.Property<DateTime?>("DecisionAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DecisionReason")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("PlanGenerationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("NotGenerated");
+
+                    b.Property<string>("StructureType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("TripRequestId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlanGenerationId")
+                        .IsUnique();
+
+                    b.HasIndex("TripRequestId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("plans", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_Plans_DaysCount", "days_count IS NULL OR days_count > 0");
+                        });
+                });
+
+            modelBuilder.Entity("VibeTravels.Core.Entities.PlanGeneration", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("ErrorMessage")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("FinishedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("InputPayload")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
+
+                    b.Property<string>("OutputRaw")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("StartedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("TripRequestId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TripRequestId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("Id", "UserId")
+                        .IsUnique();
+
+                    b.ToTable("plan_generations", (string)null);
+                });
+
             modelBuilder.Entity("VibeTravels.Core.Entities.Profile", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasDefaultValueSql("gen_random_uuid()");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("AccommodationType")
                         .HasColumnType("text")
@@ -103,6 +217,45 @@ namespace VibeTravels.Infrastructure.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Profiles", (string)null);
+                });
+
+            modelBuilder.Entity("VibeTravels.Core.Entities.TripRequest", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<int>("Days")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("NoteId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("StartDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<int>("Travelers")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NoteId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("Id", "UserId")
+                        .IsUnique();
+
+                    b.ToTable("trip_requests", (string)null);
                 });
 
             modelBuilder.Entity("VibeTravels.Core.Entities.User", b =>
@@ -141,6 +294,50 @@ namespace VibeTravels.Infrastructure.DAL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("VibeTravels.Core.Entities.Plan", b =>
+                {
+                    b.HasOne("VibeTravels.Core.Entities.PlanGeneration", "PlanGeneration")
+                        .WithMany()
+                        .HasForeignKey("PlanGenerationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VibeTravels.Core.Entities.TripRequest", "TripRequest")
+                        .WithMany()
+                        .HasForeignKey("TripRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VibeTravels.Core.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PlanGeneration");
+
+                    b.Navigation("TripRequest");
+                });
+
+            modelBuilder.Entity("VibeTravels.Core.Entities.PlanGeneration", b =>
+                {
+                    b.HasOne("VibeTravels.Core.Entities.TripRequest", "TripRequest")
+                        .WithMany()
+                        .HasForeignKey("TripRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VibeTravels.Core.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TripRequest");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("VibeTravels.Core.Entities.Profile", b =>
                 {
                     b.HasOne("VibeTravels.Core.Entities.User", null)
@@ -148,6 +345,25 @@ namespace VibeTravels.Infrastructure.DAL.Migrations
                         .HasForeignKey("VibeTravels.Core.Entities.Profile", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("VibeTravels.Core.Entities.TripRequest", b =>
+                {
+                    b.HasOne("VibeTravels.Core.Entities.Note", "Note")
+                        .WithMany()
+                        .HasForeignKey("NoteId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("VibeTravels.Core.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Note");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

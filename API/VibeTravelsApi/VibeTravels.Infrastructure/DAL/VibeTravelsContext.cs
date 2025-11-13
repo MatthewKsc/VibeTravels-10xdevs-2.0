@@ -8,6 +8,9 @@ public class VibeTravelsContext: DbContext
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<Note> Notes { get; set; }
     public virtual DbSet<Profile> Profiles { get; set; }
+    public virtual DbSet<TripRequest> TripRequests { get; set; }
+    public virtual DbSet<PlanGeneration> PlanGenerations { get; set; }
+    public virtual DbSet<Plan> Plans { get; set; }
     
     public VibeTravelsContext() { }
 

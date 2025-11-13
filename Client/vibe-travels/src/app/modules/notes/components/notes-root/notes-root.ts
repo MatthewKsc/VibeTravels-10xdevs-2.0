@@ -1,5 +1,6 @@
 import { Component, DestroyRef, inject, signal, WritableSignal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize } from 'rxjs';
 import { NotesToolbar } from '../notes-toolbar/notes-toolbar';
@@ -11,6 +12,7 @@ import { Note, NoteFormDialogData } from '../../models/note.model';
 import { ConfirmationDialog } from '../../../../shared/components';
 import { ConfirmationDialogData } from '../../../../shared/models';
 import { NotificationService } from '../../../../shared/services';
+import { PlanFormDialog, PlanFormDialogData } from '../../../plans/components/plan-form-dialog/plan-form-dialog';
 
 @Component({
   selector: 'app-notes-root',
@@ -23,6 +25,7 @@ export class NotesRoot {
   private destroyRef = inject(DestroyRef);
   private dialog = inject(MatDialog);
   private notificationService = inject(NotificationService);
+  private router = inject(Router);
 
   notes: WritableSignal<Note[] | undefined> = signal<Note[] | undefined>(undefined);
   loadingData: WritableSignal<boolean> = signal<boolean>(false);
@@ -49,7 +52,7 @@ export class NotesRoot {
     const note: Note | undefined = this.getNoteById(noteId);
 
     if (!note) {
-      this.notificationService.notifyWarning('Note not found');
+      this.notificationService.notifyWarning('Note not found, refresh the page and try again.');
       return;
     }
 
@@ -60,7 +63,7 @@ export class NotesRoot {
     const note: Note | undefined = this.getNoteById(noteId);
 
     if (!note) {
-      this.notificationService.notifyWarning('Note not found');
+      this.notificationService.notifyWarning('Note not found, refresh the page and try again.');
       return;
     }
 
@@ -94,6 +97,30 @@ export class NotesRoot {
     dialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
         this.deleteNote(noteId);
+      }
+    });
+  }
+
+  onGeneratePlan(noteId: string): void {
+    const note: Note | undefined = this.getNoteById(noteId);
+
+    if (!note) {
+      this.notificationService.notifyWarning('Note not found, refresh the page and try again.');
+      return;
+    }
+
+    const dialogRef = this.dialog.open<PlanFormDialog, PlanFormDialogData, { success: boolean }>(
+      PlanFormDialog,
+      {
+        data: { noteId },
+        width: '500px',
+        disableClose: true
+      }
+    );
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.success) {
+        this.router.navigate(['/plans']);
       }
     });
   }

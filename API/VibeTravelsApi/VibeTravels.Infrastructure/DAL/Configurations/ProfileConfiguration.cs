@@ -14,8 +14,7 @@ internal sealed class ProfileConfiguration : IEntityTypeConfiguration<Profile>
         builder.HasKey(e => e.Id);
 
         builder.Property(e => e.Id)
-            .HasConversion(e => e.Value, value => new ProfileId(value))
-            .HasDefaultValueSql("gen_random_uuid()");
+            .HasConversion(e => e.Value, value => new ProfileId(value));
 
         builder.Property(e => e.UserId)
             .HasConversion(e => e.Value, value => new UserId(value))

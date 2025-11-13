@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using VibeTravels.Application.AI;
+using VibeTravels.Core.AI;
 using VibeTravels.Shared.CQRS;
 
 namespace VibeTravels.Application;
@@ -19,6 +21,10 @@ public static class DependencyInjection
             .AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
             .AsImplementedInterfaces()
             .WithScopedLifetime());
+        
+        services.AddScoped<IAiPlanGeneratorService, MockAiPlanGeneratorService>();
+        
+        services.AddHostedService<PlanGenerationBackgroundService>();
         
         return services;
     }

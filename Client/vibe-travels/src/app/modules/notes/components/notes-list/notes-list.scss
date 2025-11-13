@@ -55,3 +55,14 @@
     --mat-button-text-icon-offset: 0;
   }
 }
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 4rem 2rem;
+  text-align: center;
+
+  h2 {
+    font-weight: 500;
+    margin: 0 0 0.5rem 0;
+  }
+}
