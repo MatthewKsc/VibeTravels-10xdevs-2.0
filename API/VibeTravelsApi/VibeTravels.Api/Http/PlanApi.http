@@ -1,0 +1,107 @@
+﻿@VibeTravelsApi_HostAddress = http://localhost:5131
+
+### Paste your access token here (get it from UsersApi signin)
+@accessToken =
+
+### Paste your note ID here (get it from NoteApi.http)
+@noteId =
+
+### Test plan ID (will be created in first request)
+@planId =
+
+### 1) Get all plans for current user
+GET {{VibeTravelsApi_HostAddress}}/api/plans
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+
+### 2) Create a new plan
+POST {{VibeTravelsApi_HostAddress}}/api/plans
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "noteId": "{{noteId}}",
+  "travelDays": 7,
+  "travelers": 2,
+  "startDate": "2025-12-01T00:00:00Z"
+}
+> {%
+    try {
+        const location = response.headers.valueOf("Location");
+        if (location) {
+            const parts = location.split('/');
+            const id = parts[parts.length - 1];
+            client.global.set("planId", id);
+            client.log("Stored planId: " + id);
+        }
+    } catch (e) { client.log("Parse error: " + e); }
+%}
+
+### 3) Get specific plan by ID
+GET {{VibeTravelsApi_HostAddress}}/api/plans/{{planId}}
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+
+### 4) Update plan content
+PUT {{VibeTravelsApi_HostAddress}}/api/plans/{{planId}}
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "contentMd": "# Updated Travel Plan\n\n## Day 1\n- Arrive at destination\n- Check into hotel\n\n## Day 2\n- City tour\n- Visit main attractions"
+}
+
+### 5) Accept plan
+POST {{VibeTravelsApi_HostAddress}}/api/plans/{{planId}}/accept
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "decisionReason": "This plan looks great! Perfect itinerary for our trip."
+}
+
+### 6) Reject plan
+POST {{VibeTravelsApi_HostAddress}}/api/plans/{{planId}}/reject
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "decisionReason": "The schedule is too tight. Need more relaxation time."
+}
+
+### 7) Retry plan generation
+POST {{VibeTravelsApi_HostAddress}}/api/plans/{{planId}}/retry
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+
+### 8) Delete plan
+DELETE {{VibeTravelsApi_HostAddress}}/api/plans/{{planId}}
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+
+### 9) Exception: Get plan without authorization (expect 401)
+GET {{VibeTravelsApi_HostAddress}}/api/plans
+Accept: application/json
+
+### 10) Exception: Get non-existent plan (expect 404 or similar error)
+GET {{VibeTravelsApi_HostAddress}}/api/plans/00000000-0000-0000-0000-000000000000
+Authorization: Bearer {{accessToken}}
+Accept: application/json
+
+### 11) Exception: Create plan with invalid data (expect validation error)
+POST {{VibeTravelsApi_HostAddress}}/api/plans
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "noteId": "00000000-0000-0000-0000-000000000000",
+  "travelDays": -1,
+  "travelers": 0,
+  "startDate": "2025-12-01"
+}
+

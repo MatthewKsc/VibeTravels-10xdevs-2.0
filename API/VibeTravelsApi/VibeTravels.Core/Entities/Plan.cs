@@ -21,6 +21,9 @@ public sealed class Plan
     public bool AdjustedByUser { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
+    public TripRequest TripRequest { get; private set; }
+    public PlanGeneration PlanGeneration { get; private set; }
+    
 
     public Plan(
         PlanId id,
@@ -46,7 +49,7 @@ public sealed class Plan
         UpdatedAt = updatedAt;
     }
 
-    public void UpdateContent(string content, string? contentMd, DateTime updatedAt)
+    public void UpdateContent(string content, DateTime updatedAt)
     {
         Content = content;
         AdjustedByUser = true;
@@ -67,6 +70,15 @@ public sealed class Plan
         DecisionAt = decisionAt;
         DecisionReason = reason;
         UpdatedAt = decisionAt;
+    }
+
+    public void ResetForRetry(DateTime updatedAt)
+    {
+        Status = PlanStatus.NotGenerated;
+        DecisionAt = null;
+        DecisionReason = null;
+        AdjustedByUser = false;
+        UpdatedAt = updatedAt;
     }
 }
 

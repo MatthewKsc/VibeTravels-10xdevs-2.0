@@ -9,11 +9,15 @@ internal sealed class PlanRepository(VibeTravelsContext context) : IPlanReposito
 {
     public Task<Plan?> GetPlanOrDefault(Specification<Plan> specification) =>
         context.Plans
+            .Include(p => p.TripRequest)
+            .Include(p => p.PlanGeneration)
             .Where(specification.ToExpression())
             .FirstOrDefaultAsync();
 
     public async Task<IReadOnlyCollection<Plan>> GetPlans(Specification<Plan> specification) =>
         await context.Plans
+            .Include(p => p.TripRequest)
+            .Include(p => p.PlanGeneration)
             .Where(specification.ToExpression())
             .ToArrayAsync();
 

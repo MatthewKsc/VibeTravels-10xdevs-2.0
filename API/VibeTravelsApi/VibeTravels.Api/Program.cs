@@ -20,6 +20,7 @@ RouteGroupBuilder api = app.MapGroup("/api");
 api.MapUserEndpoints();
 api.MapNoteEndpoints();
 api.MapProfileEndpoints();
+api.MapPlanEndpoints();
 
 try
 {

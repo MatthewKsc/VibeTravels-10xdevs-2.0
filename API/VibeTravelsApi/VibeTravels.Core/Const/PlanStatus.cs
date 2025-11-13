@@ -2,6 +2,7 @@
 
 public enum PlanStatus
 {
+    NotGenerated,
     Generated,
     Accepted,
     Rejected

@@ -45,7 +45,7 @@ internal sealed class PlanConfiguration : IEntityTypeConfiguration<Plan>
 
         builder.Property(e => e.Status)
             .HasConversion<string>()
-            .HasDefaultValue(PlanStatus.Generated)
+            .HasDefaultValue(PlanStatus.NotGenerated)
             .IsRequired();
 
         builder.Property(e => e.DecisionReason)
@@ -74,16 +74,16 @@ internal sealed class PlanConfiguration : IEntityTypeConfiguration<Plan>
             .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
 
-        builder.HasOne<TripRequest>()
+        builder.HasOne(e => e.TripRequest)
             .WithMany()
             .HasForeignKey(e => e.TripRequestId)
             .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
 
-        builder.HasOne<PlanGeneration>()
+        builder.HasOne(e => e.PlanGeneration)
             .WithMany()
             .HasForeignKey(e => e.PlanGenerationId)
-            .OnDelete(DeleteBehavior.Restrict)
+            .OnDelete(DeleteBehavior.Cascade)
             .IsRequired();
 
         builder.ToTable(t =>

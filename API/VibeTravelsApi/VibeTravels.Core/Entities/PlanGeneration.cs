@@ -55,5 +55,14 @@ public sealed class PlanGeneration
         FinishedAt = finishedAt;
         ErrorMessage = errorMessage;
     }
+
+    public void ResetToQueued()
+    {
+        Status = PlanGenerationStatus.Queued;
+        StartedAt = null;
+        FinishedAt = null;
+        OutputRaw = null;
+        ErrorMessage = null;
+    }
 }
 

@@ -1,7 +1,7 @@
 ﻿@VibeTravelsApi_HostAddress = http://localhost:5131
 
 ### Paste your access token here (get it from UsersApi signin)
-@accessToken = 
+@accessToken =
 
 ### Test note ID (will be created in first request)
 @noteId =
