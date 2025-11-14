@@ -30,8 +30,8 @@ export class PlansApiService {
     return this.httpClient.post<void>(`${this.plansApiUrl}/${planId}/reject`, decision);
   }
 
-  retryPlanGeneration(planId: string): Observable<void> {
-    return this.httpClient.post<void>(`${this.plansApiUrl}/${planId}/retry`, {});
+  retryPlanGeneration(planGenerationId: string): Observable<void> {
+    return this.httpClient.post<void>(`${this.plansApiUrl}/${planGenerationId}/retry`, {});
   }
 
   updatePlan(planId: string, requestData: PlanContentUpdate): Observable<void> {

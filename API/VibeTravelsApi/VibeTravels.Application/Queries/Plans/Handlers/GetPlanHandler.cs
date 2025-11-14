@@ -27,6 +27,7 @@ public sealed class GetPlanHandler(IPlanRepository planRepository) : IQueryHandl
         
         return new PlanDto(
             Id: plan.Id,
+            PlanGenerationId: plan.PlanGenerationId,
             Travelers: plan.TripRequest.Travelers,
             TravelDays: plan.TripRequest.Days,
             StartDate: plan.TripRequest.StartDate,

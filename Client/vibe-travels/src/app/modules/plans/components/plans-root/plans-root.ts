@@ -94,8 +94,8 @@ export class PlansRoot implements OnInit, OnDestroy {
     });
   }
 
-  onRetryPlan(planId: string): void {
-    const plan = this.getPlanById(planId);
+  onRetryPlan(planGenerationId: string): void {
+    const plan = this.getPlanByGenerationId(planGenerationId);
 
     if (!plan) {
       this.notificationService.notifyWarning('Plan not found, refresh the page and try again.');
@@ -117,7 +117,7 @@ export class PlansRoot implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        this.retryPlan(planId);
+        this.retryPlan(planGenerationId);
       }
     });
   }
@@ -143,8 +143,8 @@ export class PlansRoot implements OnInit, OnDestroy {
     });
   }
 
-  retryPlan(planId: string): void {
-    this.apiService.retryPlanGeneration(planId)
+  retryPlan(planGenerationId: string): void {
+    this.apiService.retryPlanGeneration(planGenerationId)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
@@ -168,4 +168,6 @@ export class PlansRoot implements OnInit, OnDestroy {
   }
 
   private getPlanById = (planId: string): Plan | undefined => this.plans()?.find(p => p.id === planId);
+
+  private getPlanByGenerationId = (planGenerationId: string): Plan | undefined => this.plans()?.find(p => p.planGenerationId === planGenerationId);
 }

@@ -75,13 +75,13 @@ public static class PlanEndpoints
                 })
             .WithName("RejectPlan");
         
-        builder.MapPost("/{planId:guid}/retry",
+        builder.MapPost("/{planGenerationId:guid}/retry",
                 async (
-                    Guid planId,
+                    Guid planGenerationId,
                     HttpContext context,
                     ICommandHandler<RetryPlanGeneration> handler) =>
                 {
-                    RetryPlanGeneration command = new(context.GetUserIdFromContext(), planId);
+                    RetryPlanGeneration command = new(context.GetUserIdFromContext(), planGenerationId);
                     await handler.HandleAsync(command);
                     return Results.Created();
                 })

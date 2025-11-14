@@ -24,7 +24,7 @@ export class PlanCard {
 
   isGenerating(): boolean {
     const status = this.plan().generationStatus;
-    return status === 'queued' || status === 'running' || this.plan().decisionStatus === 'notgenerated';
+    return status !== 'failed' && (status === 'queued' || status === 'running' || this.plan().decisionStatus === 'notgenerated');
   }
 
   isFailed = (): boolean => this.plan().generationStatus === 'failed';
@@ -37,7 +37,7 @@ export class PlanCard {
 
   onViewPlan = (): void => this.viewPlanClick.emit(this.plan().id);
 
-  onRetry = (): void => this.retryPlanClick.emit(this.plan().id);
+  onRetry = (): void => this.retryPlanClick.emit(this.plan().planGenerationId);
 
   onDelete = (): void => this.deletePlanClick.emit(this.plan().id);
 

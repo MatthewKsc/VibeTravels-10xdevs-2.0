@@ -19,7 +19,7 @@ export class PlansList {
 
   onViewPlan = (planId: string): void => this.viewPlanClick.emit(planId);
 
-  onRetryPlan = (planId: string): void => this.retryPlanClick.emit(planId);
+  onRetryPlan = (planGenerationId: string): void => this.retryPlanClick.emit(planGenerationId);
 
   onDeletePlan = (planId: string): void => this.deletePlanClick.emit(planId);
 

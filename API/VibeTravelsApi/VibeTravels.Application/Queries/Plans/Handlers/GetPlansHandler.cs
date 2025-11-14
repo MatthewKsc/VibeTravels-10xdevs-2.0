@@ -24,7 +24,8 @@ public sealed class GetPlansHandler(
         
         Specification<PlanGeneration> planGenerationSpecification = new PlanGenerationUserIdSpecification(userId)
             .And(new PlanGenerationStatusSpecification(PlanGenerationStatus.Queued))
-            .Or(new PlanGenerationStatusSpecification(PlanGenerationStatus.Running));
+            .Or(new PlanGenerationStatusSpecification(PlanGenerationStatus.Running))
+            .Or(new PlanGenerationStatusSpecification(PlanGenerationStatus.Failed));
         
         IReadOnlyCollection<PlanGeneration> inProgressGenerations = await planGenerationRepository
             .GetPlansGenerations(planGenerationSpecification);
@@ -54,6 +55,7 @@ public sealed class GetPlansHandler(
     private static List<PlanDto> GetPlansDtos(IReadOnlyCollection<Plan> plans) =>
         plans.Select(plan => new PlanDto(
             Id: plan.Id,
+            PlanGenerationId: plan.PlanGenerationId,
             Travelers: plan.TripRequest.Travelers,
             TravelDays: plan.TripRequest.Days,
             StartDate: plan.TripRequest.StartDate,
@@ -67,7 +69,8 @@ public sealed class GetPlansHandler(
 
     private static PlanDto[] GetInprogressPlans(PlanGeneration[] uncompletedGenerations) =>
         uncompletedGenerations.Select(generation => new PlanDto(
-            Id: generation.Id,
+            Id: Guid.Empty,
+            PlanGenerationId: generation.Id,
             Travelers: generation.TripRequest.Travelers,
             TravelDays: generation.TripRequest.Days,
             StartDate: generation.TripRequest.StartDate,
