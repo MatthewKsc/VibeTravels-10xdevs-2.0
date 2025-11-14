@@ -26,6 +26,9 @@ internal sealed class PlanGenerationConfiguration : IEntityTypeConfiguration<Pla
             .HasConversion(e => e.Value, value => new TripRequestId(value))
             .IsRequired();
 
+        builder.Property(e => e.Title)
+            .IsRequired();
+
         builder.Property(e => e.Status)
             .HasConversion<string>()
             .IsRequired();

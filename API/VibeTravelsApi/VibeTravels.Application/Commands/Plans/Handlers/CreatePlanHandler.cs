@@ -56,10 +56,13 @@ public sealed class CreatePlanHandler(
             WriteIndented = true 
         });
         
+        string planTitle = $"{note.Title.Value} - Daily";
+        
         PlanGeneration planGeneration = new(
             Guid.NewGuid(),
             userId,
             tripRequest.Id,
+            planTitle,
             PlanGenerationStatus.Queued,
             DateTime.UtcNow,
             inputPayloadJson

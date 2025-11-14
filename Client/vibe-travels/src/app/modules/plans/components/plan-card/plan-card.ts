@@ -44,8 +44,4 @@ export class PlanCard {
   onAccept = (): void => this.acceptPlanClick.emit(this.plan().id);
 
   onReject = (): void => this.rejectPlanClick.emit(this.plan().id);
-
-  formatStatus(status: string): string {
-    return status.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-  }
 }

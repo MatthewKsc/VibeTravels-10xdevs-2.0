@@ -12,6 +12,7 @@ public sealed class Plan
     public UserId UserId { get; private set; }
     public TripRequestId TripRequestId { get; private set; }
     public PlanGenerationId PlanGenerationId { get; private set; }
+    public string Title { get; private set; }
     public PlanStructure StructureType { get; private set; }
     public int? DaysCount { get; private set; }
     public string Content { get; private set; }
@@ -30,6 +31,7 @@ public sealed class Plan
         UserId userId,
         TripRequestId tripRequestId,
         PlanGenerationId planGenerationId,
+        string title,
         PlanStructure structureType,
         int? daysCount,
         string content,
@@ -40,6 +42,7 @@ public sealed class Plan
         UserId = userId;
         TripRequestId = tripRequestId;
         PlanGenerationId = planGenerationId;
+        Title = title;
         StructureType = structureType;
         DaysCount = daysCount;
         Content = content;

@@ -10,6 +10,7 @@ public sealed class PlanGeneration
     public PlanGenerationId Id { get; private set; }
     public UserId UserId { get; private set; }
     public TripRequestId TripRequestId { get; private set; }
+    public string Title { get; private set; }
     public PlanGenerationStatus Status { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? StartedAt { get; private set; }
@@ -24,6 +25,7 @@ public sealed class PlanGeneration
         PlanGenerationId id,
         UserId userId,
         TripRequestId tripRequestId,
+        string title,
         PlanGenerationStatus status,
         DateTime createdAt,
         string inputPayload)
@@ -31,6 +33,7 @@ public sealed class PlanGeneration
         Id = id;
         UserId = userId;
         TripRequestId = tripRequestId;
+        Title = title;
         Status = status;
         CreatedAt = createdAt;
         InputPayload = inputPayload;

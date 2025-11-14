@@ -32,6 +32,9 @@ internal sealed class PlanConfiguration : IEntityTypeConfiguration<Plan>
             .HasConversion(e => e.Value, value => new PlanGenerationId(value))
             .IsRequired();
 
+        builder.Property(e => e.Title)
+            .IsRequired();
+
         builder.Property(e => e.StructureType)
             .HasConversion<string>()
             .IsRequired();

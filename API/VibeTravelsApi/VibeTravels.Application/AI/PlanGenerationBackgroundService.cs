@@ -152,6 +152,7 @@ public sealed class PlanGenerationBackgroundService(
                 planGeneration.UserId,
                 planGeneration.TripRequestId,
                 planGeneration.Id,
+                planGeneration.Title,
                 PlanStructure.Daily,
                 inputPayload.TripRequest.TravelDays,
                 aiResponse,

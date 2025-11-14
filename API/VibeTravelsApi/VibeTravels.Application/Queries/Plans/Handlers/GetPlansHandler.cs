@@ -56,6 +56,7 @@ public sealed class GetPlansHandler(
         plans.Select(plan => new PlanDto(
             Id: plan.Id,
             PlanGenerationId: plan.PlanGenerationId,
+            Title: plan.Title,
             Travelers: plan.TripRequest.Travelers,
             TravelDays: plan.TripRequest.Days,
             StartDate: plan.TripRequest.StartDate,
@@ -70,6 +71,7 @@ public sealed class GetPlansHandler(
     private static PlanDto[] GetInprogressPlans(PlanGeneration[] uncompletedGenerations) =>
         uncompletedGenerations.Select(generation => new PlanDto(
             Id: Guid.Empty,
+            Title: generation.Title,
             PlanGenerationId: generation.Id,
             Travelers: generation.TripRequest.Travelers,
             TravelDays: generation.TripRequest.Days,
