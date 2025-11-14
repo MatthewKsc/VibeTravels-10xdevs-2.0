@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Scalar.AspNetCore;
+using VibeTravels.Infrastructure.AI;
 using VibeTravels.Infrastructure.Cors;
 using VibeTravels.Infrastructure.DAL;
 using VibeTravels.Infrastructure.Logging;
@@ -30,6 +31,7 @@ public static class DependencyInjection
         services.AddPostgres(configuration);
         services.AddCommandHandlerLogging();
         services.AddQueryHandlerLogging();
+        services.AddAiConfiguration(configuration);
 
         services.AddCorsSettings(configuration);
     }
