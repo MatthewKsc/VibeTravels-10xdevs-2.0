@@ -16,7 +16,8 @@ WebApplication app = builder.Build();
 
 app.UseInfrastructure();
 
-RouteGroupBuilder api = app.MapGroup("/api");
+RouteGroupBuilder api = app.MapGroup("/api").RequireAuthorization();
+api.MapSystemEndpoints();
 api.MapUserEndpoints();
 api.MapNoteEndpoints();
 api.MapProfileEndpoints();

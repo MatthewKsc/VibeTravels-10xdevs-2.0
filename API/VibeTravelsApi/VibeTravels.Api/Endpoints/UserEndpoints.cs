@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using VibeTravels.Application.Commands;
 using VibeTravels.Application.Commands.Auth;
 using VibeTravels.Application.DTO;
 using VibeTravels.Application.Security;
@@ -18,7 +16,8 @@ public static class UserEndpoints
             async (
                 [FromBody] SignUp command,
                 ICommandHandler<SignUp> handler) => await handler.HandleAsync(command))
-            .WithName("SignUpUser");
+            .WithName("SignUpUser")
+            .AllowAnonymous();
         
         builder.MapPost("/signin", async ([FromBody] SignIn command, ICommandHandler<SignIn> handler, ITokenStorage tokenStorage) =>
             {
@@ -26,11 +25,7 @@ public static class UserEndpoints
                 JwtDto? jwt = tokenStorage.RetrieveToken();
                 return jwt is not null ? Results.Ok(jwt) : Results.Unauthorized();
             })
-            .WithName("SignInUser");
-        
-        //TODO: Temporary endpoint to check API authorization, remove it later
-        builder.MapGet("/alive", [Authorize] () => Results.Ok("Api Alive"))
-            .WithName("Alive")
-            .RequireAuthorization();
+            .WithName("SignInUser")
+            .AllowAnonymous();
     }
 }
