@@ -472,44 +472,6 @@ Available test files:
 
 ## Development
 
-### Running Migrations
-
-When making changes to entities, create and apply migrations:
-
-```powershell
-cd API\VibeTravelsApi\VibeTravels.Api
-
-# Create a new migration
-dotnet ef migrations add YourMigrationName
-
-# Apply migration to database
-dotnet ef database update
-
-# Rollback to a specific migration
-dotnet ef database update PreviousMigrationName
-
-# Remove the last migration (if not applied)
-dotnet ef migrations remove
-```
-
-### Building for Production
-
-**API:**
-
-```powershell
-cd API\VibeTravelsApi\VibeTravels.Api
-dotnet publish -c Release -o ./publish
-```
-
-**Client:**
-
-```powershell
-cd Client\vibe-travels
-npm run build:production
-```
-
-Output will be in `Client/vibe-travels/dist/`.
-
 ### Logging
 
 API logs are written to:
