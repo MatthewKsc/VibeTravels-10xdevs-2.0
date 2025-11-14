@@ -408,6 +408,7 @@ Available test files:
 - `ProfileApi.http` - User profile management
 - `NoteApi.http` - Notes CRUD operations
 - `PlanApi.http` - Plan generation and management
+- `SystemApi.http` - Api endpoints like health check
 
 ---
 
