@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>
       <div class="plan-title-row">
-        <span class="plan-structure">{{ formatStatus(plan().structureType) }}</span>
+        <span class="plan-structure">{{ plan().title }}</span>
       </div>
     </mat-card-title>
   </mat-card-header>
@@ -35,9 +35,6 @@
         <mat-icon class="status-icon">error</mat-icon>
         <div class="status-content">
           <span class="status-title">Generation failed</span>
-          @if (plan().errorMessage) {
-            <span class="status-text">{{ plan().errorMessage }}</span>
-          }
         </div>
       </div>
     }

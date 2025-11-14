@@ -135,7 +135,7 @@ public sealed class PlanGenerationBackgroundService(
         string aiResponse)
     {
         Plan? existingPlan = await planRepository
-            .GetPlanOrDefault(new Specifications.Plans.PlanGenerationIdSpecification(planGeneration.Id));
+            .GetPlanOrDefault(new Specifications.Plans.PlanByPlanGenerationIdSpecification(planGeneration.Id));
 
         if (existingPlan is not null)
         {
@@ -152,6 +152,7 @@ public sealed class PlanGenerationBackgroundService(
                 planGeneration.UserId,
                 planGeneration.TripRequestId,
                 planGeneration.Id,
+                planGeneration.Title,
                 PlanStructure.Daily,
                 inputPayload.TripRequest.TravelDays,
                 aiResponse,

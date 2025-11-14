@@ -3,6 +3,8 @@ export type PlanDecisionStatus = 'notgenerated' | 'generated' | 'accepted' | 're
 
 export interface Plan {
     id: string;
+    planGenerationId: string;
+    title: string;
     travelers: number;
     travelDays: number;
     startDate: Date;

@@ -2,4 +2,4 @@
 
 namespace VibeTravels.Application.Commands.Plans;
 
-public sealed record RetryPlanGeneration(Guid UserId, Guid PlanId) : ICommand;
+public sealed record RetryPlanGeneration(Guid UserId, Guid PlanGenerationId) : ICommand;
