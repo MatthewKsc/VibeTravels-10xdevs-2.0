@@ -249,7 +249,7 @@ dotnet run
 The API will start on **http://localhost:5131** (default port).
 
 **Verify API is running:**
-Navigate to http://localhost:5131/scalar or http://localhost:5131/api/system/alive
+Navigate to http://localhost:5131/scalar or http://localhost:5131/api/health
 
 ### 3. Client Setup
 
