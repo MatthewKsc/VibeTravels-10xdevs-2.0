@@ -210,7 +210,7 @@ docker ps | Select-String "vibetravels-postgres"
 
 #### a) Configure Environment Variables
 
-Set up required environment variables for sensitive configuration or update `appsettings.Development.json`:
+Set up required environment variables for sensitive configuration or update `appsettings`:
 
 ```powershell
 # Set JWT Secret (required)
@@ -220,7 +220,7 @@ $env:JWT_SECRET = "your-secure-secret-key-here-minimum-32-characters"
 $env:OPENAI_API_KEY = "your-openai-api-key-here"
 ```
 
-**Important**: The `appsettings.Development.json` uses these environment variables via placeholders:
+**Important**: The `appsettings` uses these environment variables via placeholders:
 
 - `${JWT_SECRET}` - Required for authentication
 - `${OPENAI_API_KEY}` - Required only if AI features are enabled
@@ -281,9 +281,9 @@ The Angular app will start on **http://localhost:4200**
 
 ## Configuration
 
-### API Configuration (`appsettings.Development.json`)
+### API Configuration (`appsettings`)
 
-Located at: `API/VibeTravelsApi/VibeTravels.Api/appsettings.Development.json`
+Located at: `API/VibeTravelsApi/VibeTravels.Api/appsettings.**`
 
 #### AI Features Configuration
 
@@ -480,13 +480,13 @@ API logs are written to:
 - Console (structured JSON in production)
 - File: `API/VibeTravelsApi/VibeTravels.Api/Logs/logs_YYYY_MM_DD.txt`
 
-Configured via Serilog in `appsettings.Development.json`.
+Configured via Serilog in `appsettings`.
 
 ### CORS Configuration
 
 The API is configured to accept requests from `http://localhost:4200` (Angular dev server).
 
-To add more origins, edit `appsettings.Development.json`:
+To add more origins, edit `appsettings`:
 
 ```json
 "Cors": {
