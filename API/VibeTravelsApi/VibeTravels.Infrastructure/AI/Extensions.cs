@@ -15,6 +15,7 @@ public static class Extensions
 
         if (openAiOptions?.Enabled == true)
         {
+            services.AddScoped<IAiPlanGeneratorService, OpenAiPlanGenerationService>();
         }
         else
         {
