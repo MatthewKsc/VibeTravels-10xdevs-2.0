@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibeTravels.Core", "VibeTra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibeTravels.Shared", "VibeTravels.Shared\VibeTravels.Shared.csproj", "{0D88B446-5D00-43B8-9E94-01231A638DEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibeTravels.Tests", "VibeTravels.Tests\VibeTravels.Tests.csproj", "{3B2F5384-FB9A-4B73-8707-87AC21807D64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{0D88B446-5D00-43B8-9E94-01231A638DEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D88B446-5D00-43B8-9E94-01231A638DEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D88B446-5D00-43B8-9E94-01231A638DEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B2F5384-FB9A-4B73-8707-87AC21807D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2F5384-FB9A-4B73-8707-87AC21807D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2F5384-FB9A-4B73-8707-87AC21807D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2F5384-FB9A-4B73-8707-87AC21807D64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
