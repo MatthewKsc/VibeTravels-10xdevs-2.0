@@ -5,8 +5,8 @@ using VibeTravels.Shared.Specifications;
 
 namespace VibeTravels.Application.Specifications.PlanGenerations;
 
-internal sealed class PlanGenerationStatusSpecification(PlanGenerationStatus status) : Specification<PlanGeneration>
+internal sealed class PlanGenerationStatusSpecification(PlanGenerationStatus[] status) : Specification<PlanGeneration>
 {
-    public override Expression<Func<PlanGeneration, bool>> ToExpression() => planGeneration => planGeneration.Status == status;
+    public override Expression<Func<PlanGeneration, bool>> ToExpression() => planGeneration => status.Contains(planGeneration.Status);
 }
 
