@@ -2,12 +2,16 @@ import { test as base, expect } from '@playwright/test';
 import { LoginPage } from '../page-objects/login.page';
 import { NotesPage } from '../page-objects/notes.page';
 import { SignUpPage } from '../page-objects/signup.page';
+import { PlansPage } from '../page-objects/plans.page';
+import { UserProfilePage } from '../page-objects/user-profile.page';
 import { TestUser, createTestUser, registerUser, loginUser } from '../helpers/auth.helper';
 
 type CustomFixtures = {
   loginPage: LoginPage;
   notesPage: NotesPage;
   signUpPage: SignUpPage;
+  plansPage: PlansPage;
+  userProfilePage: UserProfilePage;
   testUser: TestUser;
   authenticatedPage: void;
 };
@@ -56,6 +60,16 @@ export const test = base.extend<CustomFixtures, WorkerFixtures>({
   signUpPage: async ({ page }, use) => {
     const signUpPage = new SignUpPage(page);
     await use(signUpPage);
+  },
+
+  plansPage: async ({ page }, use) => {
+    const plansPage = new PlansPage(page);
+    await use(plansPage);
+  },
+
+  userProfilePage: async ({ page }, use) => {
+    const userProfilePage = new UserProfilePage(page);
+    await use(userProfilePage);
   },
 });
 

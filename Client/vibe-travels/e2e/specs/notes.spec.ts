@@ -37,7 +37,7 @@ test.describe('Notes Management', () => {
 
     await page.locator('input[formControlName="title"]').fill('Test Trip to Paris');
     await page.locator('input[formControlName="location"]').fill('Paris, France');
-    await page.locator('textarea[formControlName="content"]').fill('A'.repeat(150)); // Min 100 chars
+    await page.locator('textarea[formControlName="content"]').fill('Want to explore the romantic city of Paris. Visit the Eiffel Tower, Louvre Museum, and enjoy authentic French cuisine. Looking for cozy cafes and beautiful architecture.');
 
     await page.getByRole('button', { name: /add note|save/i }).click();
 
