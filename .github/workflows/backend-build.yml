@@ -34,9 +34,8 @@ jobs:
         working-directory: ./API/VibeTravelsApi
 
       - name: Test
-        run: dotnet test --no-build --verbosity normal --configuration Release
+        run: dotnet test VibeTravels.Tests/VibeTravels.Tests.csproj --no-build --verbosity normal
         working-directory: ./API/VibeTravelsApi
-        continue-on-error: true
 
       - name: Publish
         run: dotnet publish --no-build --configuration Release --output ./publish

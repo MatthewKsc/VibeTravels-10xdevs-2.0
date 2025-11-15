@@ -60,8 +60,8 @@ VibeTravels addresses the challenge of planning engaging trips by providing:
 
 ### Testing
 
-- **Backend Unit Tests**: xUnit / NUnit
-- **Frontend Unit Tests**: Karma / Jest
+- **Backend Unit Tests**: NUnit
+- **Frontend Unit Tests**: Jest
 - **E2E Tests**: Playwright
 
 ---

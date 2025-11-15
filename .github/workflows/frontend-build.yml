@@ -36,10 +36,9 @@ jobs:
         working-directory: ./Client/vibe-travels
         continue-on-error: true
 
-      - name: Test
-        run: npm run test -- --watch=false --browsers=ChromeHeadless
+      - name: Unit Tests
+        run: npm run test
         working-directory: ./Client/vibe-travels
-        continue-on-error: true
 
       - name: Build
         run: npm run build:production
