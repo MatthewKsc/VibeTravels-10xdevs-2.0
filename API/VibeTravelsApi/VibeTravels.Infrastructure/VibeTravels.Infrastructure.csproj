@@ -36,4 +36,8 @@
       <Folder Include="DAL\Migrations\" />
     </ItemGroup>
 
+    <ItemGroup>
+        <InternalsVisibleTo Include="VibeTravels.Tests" />
+    </ItemGroup>
+
 </Project>
