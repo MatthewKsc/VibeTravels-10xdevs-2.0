@@ -17,11 +17,11 @@ export class NotesPage extends BasePage {
     super(page);
     
     // Initialize locators
-    this.createNoteButton = page.getByRole('button', { name: /create|add note/i });
-    this.notesList = page.locator('[data-testid="notes-list"], .notes-list');
-    this.noteItem = page.locator('[data-testid="note-item"], .note-item');
+    this.createNoteButton = page.getByRole('button', { name: /new note/i });
+    this.notesList = page.locator('.notes-grid');
+    this.noteItem = page.locator('.note-card');
     this.searchInput = page.locator('input[type="search"], input[placeholder*="search" i]');
-    this.emptyState = page.locator('[data-testid="empty-state"], .empty-state');
+    this.emptyState = page.locator('.empty-state');
   }
 
   override async goto() {
@@ -53,7 +53,7 @@ export class NotesPage extends BasePage {
    * Get note by title
    */
   getNoteByTitle(title: string): Locator {
-    return this.page.locator(`[data-testid="note-item"]:has-text("${title}"), .note-item:has-text("${title}")`);
+    return this.page.locator(`.note-card:has-text("${title}")`);
   }
 
   /**

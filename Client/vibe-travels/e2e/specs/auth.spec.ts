@@ -30,8 +30,8 @@ test.describe('Authentication Flow', () => {
       await expect(page).toHaveURL(/\/auth\/sign-up/);
     });
 
-    test('should successfully login with valid credentials', async ({ loginPage, page }) => {
-      await loginPage.login('testuser@gmail.com', 'cJ6QFLY*ch');
+    test('should successfully login with valid credentials', async ({ loginPage, page, testUser }) => {
+      await loginPage.login(testUser.email, testUser.password);
 
       await expect(page).toHaveURL(/\/(notes|dashboard)/);
     });
@@ -52,8 +52,9 @@ test.describe('Authentication Flow', () => {
     });
 
     test('should register a new user and redirect to sign in', async ({ signUpPage, page }) => {
+      // Create a unique email for this specific test
       const timestamp = Date.now();
-      const testEmail = `test${timestamp}@example.com`;
+      const testEmail = `signup-test${timestamp}@example.com`;
       const testPassword = 'ValidPassword123!';
 
       await signUpPage.signUp(testEmail, testPassword, testPassword);
