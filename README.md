@@ -58,6 +58,12 @@ VibeTravels addresses the challenge of planning engaging trips by providing:
 - **Docker & Docker Compose** - PostgreSQL containerization
 - **GitHub Actions** - CI/CD (planned)
 
+### Testing
+
+- **Backend Unit Tests**: xUnit / NUnit
+- **Frontend Unit Tests**: Karma / Jasmine
+- **E2E Tests**: Playwright
+
 ---
 
 ## Prerequisites
