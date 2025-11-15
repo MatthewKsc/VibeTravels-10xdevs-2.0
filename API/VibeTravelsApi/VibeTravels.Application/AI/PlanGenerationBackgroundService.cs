@@ -49,7 +49,7 @@ public sealed class PlanGenerationBackgroundService(
         var aiService = scope.ServiceProvider.GetRequiredService<IAiPlanGeneratorService>();
 
         IReadOnlyCollection<PlanGeneration> queuedGenerations = await planGenerationRepository
-            .GetPlansGenerations(new PlanGenerationStatusSpecification(PlanGenerationStatus.Queued));
+            .GetPlansGenerations(new PlanGenerationStatusSpecification([PlanGenerationStatus.Queued]));
 
         if (!queuedGenerations.Any())
             return;

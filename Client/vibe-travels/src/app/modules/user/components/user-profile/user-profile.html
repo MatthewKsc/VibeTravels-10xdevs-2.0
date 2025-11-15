@@ -66,7 +66,7 @@
           mat-raised-button 
           color="primary" 
           (click)="updateProfile()"
-          [disabled]="!isFormValid() || processingRequest()"
+          [disabled]="profileForm.invalid || processingRequest()"
           type="button">
           @if (processingRequest()) {
             <mat-spinner diameter="20"></mat-spinner>

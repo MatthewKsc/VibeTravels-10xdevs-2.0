@@ -21,11 +21,11 @@ public sealed class GetPlansHandler(
         Specification<Plan> planSpecification = new PlanUserIdSpecification(userId)
             .And(new PlanStatusNotIncludeSpecification(PlanStatus.NotGenerated));
         IReadOnlyCollection<Plan> plans = await planRepository.GetPlans(planSpecification);
-        
-        Specification<PlanGeneration> planGenerationSpecification = new PlanGenerationUserIdSpecification(userId)
-            .And(new PlanGenerationStatusSpecification(PlanGenerationStatus.Queued))
-            .Or(new PlanGenerationStatusSpecification(PlanGenerationStatus.Running))
-            .Or(new PlanGenerationStatusSpecification(PlanGenerationStatus.Failed));
+
+        Specification<PlanGeneration> planGenerationSpecification = new PlanGenerationUserIdSpecification(userId).And(
+            new PlanGenerationStatusSpecification([
+                PlanGenerationStatus.Queued, PlanGenerationStatus.Running, PlanGenerationStatus.Failed
+            ]));
         
         IReadOnlyCollection<PlanGeneration> inProgressGenerations = await planGenerationRepository
             .GetPlansGenerations(planGenerationSpecification);
