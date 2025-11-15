@@ -1,0 +1,87 @@
+<div class="plan-form-dialog-container">
+    <h2 mat-dialog-title>Generate Travel Plan</h2>
+    
+    <mat-dialog-content>
+      @if (isProfileIncomplete()) {
+        <div class="profile-banner">
+          <mat-icon class="banner-icon">info</mat-icon>
+          <div class="banner-content">
+            <p>Complete your <a routerLink="/user/profile" (click)="onCancel()">travel profile</a> for better personalized recommendations.</p>
+          </div>
+        </div>
+      }
+    
+      <form [formGroup]="planForm" class="plan-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Travel Days</mat-label>
+          <input 
+            matInput 
+            type="number" 
+            formControlName="travelDays"
+            placeholder="Enter number of days"
+            min="1">
+          @if (planForm.get('travelDays')?.hasError('required') && planForm.get('travelDays')?.touched) {
+            <mat-error>Travel days are required</mat-error>
+          }
+          @if (planForm.get('travelDays')?.hasError('min')) {
+            <mat-error>Must be at least 1 day</mat-error>
+          }
+          @if (planForm.get('travelDays')?.hasError('pattern')) {
+            <mat-error>Please enter a valid number</mat-error>
+          }
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+          <mat-label>Number of Travelers</mat-label>
+          <input 
+            matInput 
+            type="number" 
+            formControlName="travelers"
+            placeholder="Enter number of travelers"
+            min="1">
+          @if (planForm.get('travelers')?.hasError('required') && planForm.get('travelers')?.touched) {
+            <mat-error>Number of travelers is required</mat-error>
+          }
+          @if (planForm.get('travelers')?.hasError('min')) {
+            <mat-error>Must be at least 1 traveler</mat-error>
+          }
+          @if (planForm.get('travelers')?.hasError('pattern')) {
+            <mat-error>Please enter a valid number</mat-error>
+          }
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+          <mat-label>Start Date</mat-label>
+          <input 
+            matInput 
+            [matDatepicker]="picker" 
+            formControlName="startDate"
+            placeholder="Select start date">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          @if (planForm.get('startDate')?.hasError('required') && planForm.get('startDate')?.touched) {
+            <mat-error>Start date is required</mat-error>
+          }
+        </mat-form-field>
+      </form>
+    </mat-dialog-content>
+    
+    <mat-dialog-actions align="end">
+      @if (!isLoading()) {
+        <button mat-button (click)="onCancel()">Cancel</button>
+        <button 
+          mat-raised-button 
+          color="primary" 
+          (click)="onSubmit()"
+          [disabled]="planForm.invalid">
+          Generate Plan
+        </button>
+      } @else {
+        <div class="loading-container">
+          <mat-spinner diameter="24"></mat-spinner>
+          <span class="loading-text">Generating plan...</span>
+        </div>
+      }
+    </mat-dialog-actions>
+</div>
+

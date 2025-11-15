@@ -1,0 +1,36 @@
+<div class="note-details-dialog-container">
+    <h2 mat-dialog-title>Note Details</h2>
+    
+    <mat-dialog-content>
+      <div class="note-detail-section">
+        <h3 class="section-label">Title</h3>
+        <p class="section-content">{{ note.title }}</p>
+      </div>
+    
+      <div class="note-detail-section">
+        <h3 class="section-label">Location</h3>
+        <p class="section-content">{{ note.location }}</p>
+      </div>
+    
+      <div class="note-detail-section">
+        <h3 class="section-label">Content</h3>
+        <p class="section-content content-text">{{ note.content }}</p>
+      </div>
+    
+      <div class="note-detail-section">
+        <h3 class="section-label">Created</h3>
+        <p class="section-content">{{ note.createdAt | date:'medium' }}</p>
+      </div>
+    
+      @if (note.updatedAt) {
+        <div class="note-detail-section">
+          <h3 class="section-label">Last Updated</h3>
+          <p class="section-content">{{ note.updatedAt | date:'medium' }}</p>
+        </div>
+      }
+    </mat-dialog-content>
+    
+    <mat-dialog-actions align="end">
+      <button mat-button (click)="close()">Close</button>
+    </mat-dialog-actions>
+</div>

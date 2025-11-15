@@ -1,0 +1,56 @@
+@if (notes().length === 0) {
+  <div class="empty-state">
+    <h2>No notes yet</h2>
+    <p>Add travel notes to get started</p>
+  </div>
+} @else {
+  <div class="notes-grid">
+    @for (note of notes(); track note.id) {
+      <mat-card class="note-card">
+        <mat-card-header>
+          <mat-card-title>{{ note.title }}</mat-card-title>
+          <mat-card-subtitle>{{ note.location }}</mat-card-subtitle>
+        </mat-card-header>
+        
+        <mat-card-content>
+          <p class="note-content">{{ getContentPreview(note.content) }}</p>
+        </mat-card-content>
+  
+        <mat-card-actions class="note-actions">
+          <button
+            mat-button
+            (click)="onView(note.id)" 
+            aria-label="View note details"
+            matTooltip="View details"
+            class="action-button">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button
+            mat-button
+            (click)="onEdit(note.id)" 
+            aria-label="Edit note"
+            matTooltip="Edit note"
+            class="action-button">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-button
+            (click)="onGeneratePlan(note.id)" 
+            aria-label="Generate travel plan"
+            matTooltip="Generate travel plan from this note"
+            class="action-button generate-button">
+            <mat-icon>flight_takeoff</mat-icon>
+          </button>
+          <button 
+            mat-button
+            (click)="onDelete(note.id)" 
+            aria-label="Delete note"
+            matTooltip="Delete note"
+            class="action-button">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+}

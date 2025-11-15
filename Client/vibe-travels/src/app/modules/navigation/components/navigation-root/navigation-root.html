@@ -1,0 +1,12 @@
+<header class="navbar" role="banner">
+  <div class="navbar-container">
+    <a [routerLink]="'/home'" class="brand-link">
+      <h1 class="brand-name">{{ appName }}</h1>
+    </a>
+
+    <div class="navbar-actions">
+      <app-navigation-options [isLoggedIn]="isLoggedIn()" />
+      <app-navigation-theme />
+    </div>
+  </div>
+</header>

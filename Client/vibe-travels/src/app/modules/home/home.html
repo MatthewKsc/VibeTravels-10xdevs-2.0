@@ -1,0 +1,51 @@
+<div class="home-container">
+  <header class="hero-section">
+    <h1 class="hero-title">Welcome to VibeTravels</h1>
+    <p class="hero-subtitle">
+      Transform your travel notes into actionable itineraries with AI-powered planning
+    </p>
+  </header>
+
+  <section class="features-section">
+    @for (feature of features; track feature.title) {
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-icon class="feature-icon">{{ feature.icon }}</mat-icon>
+          <mat-card-title>{{ feature.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ feature.description }}</p>
+        </mat-card-content>
+      </mat-card>
+    }
+  </section>
+
+  <section class="cta-section">
+    <h2>Ready to plan your next adventure?</h2>
+    <p>Start by creating your first travel note and let AI help you build the perfect itinerary.</p>
+    <button routerLink="/notes" mat-raised-button color="primary" class="cta-button">
+      Get Started
+    </button>
+  </section>
+
+  <section class="about-section">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>About VibeTravels</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          VibeTravels helps you organize fragmented travel ideas and convert them into coherent, 
+          actionable plans. Whether you're planning a week-long adventure or exploring activity 
+          options for a destination, our AI-powered system creates personalized itineraries based 
+          on your preferences.
+        </p>
+        <p>
+          Simply capture your travel thoughts in notes, set your preferences for travel style and 
+          accommodations, and let VibeTravels generate detailed plans tailored to your trip length 
+          and group size.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>

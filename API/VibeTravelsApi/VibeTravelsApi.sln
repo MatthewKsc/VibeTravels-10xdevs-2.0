@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibeTravels.Api", "VibeTravels.Api\VibeTravels.Api.csproj", "{691DFF1A-0EDA-45CA-B41E-978D0D08D822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibeTravels.Infrastructure", "VibeTravels.Infrastructure\VibeTravels.Infrastructure.csproj", "{36BF6AFD-364F-4655-A2D7-A12EF3E04E1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibeTravels.Application", "VibeTravels.Application\VibeTravels.Application.csproj", "{66203FF8-68FD-4F63-9357-F311CAB71D71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibeTravels.Core", "VibeTravels.Core\VibeTravels.Core.csproj", "{3CE9DBFB-2FD9-4E27-B595-783454ACB21B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibeTravels.Shared", "VibeTravels.Shared\VibeTravels.Shared.csproj", "{0D88B446-5D00-43B8-9E94-01231A638DEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VibeTravels.Tests", "VibeTravels.Tests\VibeTravels.Tests.csproj", "{3B2F5384-FB9A-4B73-8707-87AC21807D64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{691DFF1A-0EDA-45CA-B41E-978D0D08D822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{691DFF1A-0EDA-45CA-B41E-978D0D08D822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{691DFF1A-0EDA-45CA-B41E-978D0D08D822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{691DFF1A-0EDA-45CA-B41E-978D0D08D822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36BF6AFD-364F-4655-A2D7-A12EF3E04E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36BF6AFD-364F-4655-A2D7-A12EF3E04E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36BF6AFD-364F-4655-A2D7-A12EF3E04E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36BF6AFD-364F-4655-A2D7-A12EF3E04E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66203FF8-68FD-4F63-9357-F311CAB71D71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66203FF8-68FD-4F63-9357-F311CAB71D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66203FF8-68FD-4F63-9357-F311CAB71D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66203FF8-68FD-4F63-9357-F311CAB71D71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CE9DBFB-2FD9-4E27-B595-783454ACB21B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE9DBFB-2FD9-4E27-B595-783454ACB21B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE9DBFB-2FD9-4E27-B595-783454ACB21B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE9DBFB-2FD9-4E27-B595-783454ACB21B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D88B446-5D00-43B8-9E94-01231A638DEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D88B446-5D00-43B8-9E94-01231A638DEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D88B446-5D00-43B8-9E94-01231A638DEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D88B446-5D00-43B8-9E94-01231A638DEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B2F5384-FB9A-4B73-8707-87AC21807D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2F5384-FB9A-4B73-8707-87AC21807D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2F5384-FB9A-4B73-8707-87AC21807D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2F5384-FB9A-4B73-8707-87AC21807D64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

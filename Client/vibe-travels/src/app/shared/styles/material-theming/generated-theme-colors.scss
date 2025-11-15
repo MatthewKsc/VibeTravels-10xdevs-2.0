@@ -1,0 +1,10 @@
+@use "@angular/material" as mat;
+@use "./tokens.scss" as tokens;
+
+// Export palettes for use in theme
+$primary-palette: tokens.$primary-palette;
+$secondary-palette: tokens.$secondary-palette;
+$tertiary-palette: tokens.$tertiary-palette;
+$error-palette: tokens.$error-palette;
+$neutral-palette: tokens.$neutral-palette;
+$neutral-variant-palette: tokens.$neutral-variant-palette;

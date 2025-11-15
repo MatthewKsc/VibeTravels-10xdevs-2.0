@@ -1,0 +1,122 @@
+<div class="plan-form-dialog-container">
+    <h2 mat-dialog-title>Plan Details</h2>
+    
+    <mat-dialog-content>
+      <div class="plan-info">
+        <div class="info-row">
+          <span class="info-label">Travel Days:</span>
+          <span>{{ plan().travelDays }} days</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Travelers:</span>
+          <span>{{ plan().travelers }} person(s)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Start Date:</span>
+          <span>{{ plan().startDate | date: 'mediumDate' }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Structure:</span>
+          <span>{{ plan().structureType }}</span>
+        </div>
+      </div>
+    
+      @if (!showRejectForm()) {
+        <mat-tab-group>
+          <mat-tab label="Content">
+            <div class="tab-content">
+              <form [formGroup]="contentForm">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Plan Content (Markdown)</mat-label>
+                  <textarea 
+                    matInput 
+                    formControlName="contentMd"
+                    rows="15"
+                    placeholder="Plan content in markdown format..."></textarea>
+                  @if (contentForm.get('contentMd')?.hasError('required') && contentForm.get('contentMd')?.touched) {
+                    <mat-error>Content is required</mat-error>
+                  }
+                </mat-form-field>
+              </form>
+    
+              @if (isEditMode() && isAccepted()) {
+                <div class="edit-hint">
+                  <p>You can edit the content above and save your changes.</p>
+                </div>
+              }
+            </div>
+          </mat-tab>
+    
+          <mat-tab label="Preview">
+            <div class="tab-content preview-content">
+              <div class="markdown-preview">
+                {{ contentForm.get('contentMd')?.value || 'No content available' }}
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      }
+    
+      @if (showRejectForm()) {
+        <div class="reject-form-section">
+          <h3>Reject Plan</h3>
+          <p>Please provide a reason for rejecting this plan:</p>
+          <form [formGroup]="rejectReasonForm">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Rejection Reason</mat-label>
+              <textarea 
+                matInput 
+                formControlName="decisionReason"
+                rows="4"
+                placeholder="Enter your reason..."></textarea>
+              @if (rejectReasonForm.get('decisionReason')?.hasError('required') && rejectReasonForm.get('decisionReason')?.touched) {
+                <mat-error>Rejection reason is required</mat-error>
+              }
+            </mat-form-field>
+          </form>
+        </div>
+      }
+    </mat-dialog-content>
+    
+    <mat-dialog-actions align="end">
+      @if (!isLoading()) {
+        @if (!showRejectForm()) {
+          @if (isGenerated()) {
+            <button mat-button (click)="onClose()">Close</button>
+            <button mat-button color="warn" (click)="onReject()">Reject</button>
+            <button mat-raised-button color="primary" (click)="onAccept()">Accept</button>
+          }
+    
+          @if (isAccepted()) {
+            @if (!isEditMode()) {
+              <button mat-button (click)="onClose()">Close</button>
+              <button mat-raised-button color="primary" (click)="toggleEditMode()">Edit</button>
+            } @else {
+              <button mat-button (click)="toggleEditMode()">Cancel Edit</button>
+              <button 
+                mat-raised-button 
+                color="primary" 
+                (click)="onUpdate()"
+                [disabled]="contentForm.invalid || contentForm.pristine">
+                Save Changes
+              </button>
+            }
+          }
+        } @else {
+          <button mat-button (click)="cancelReject()">Cancel</button>
+          <button 
+            mat-raised-button 
+            color="warn" 
+            (click)="onReject()"
+            [disabled]="rejectReasonForm.invalid">
+            Confirm Rejection
+          </button>
+        }
+      } @else {
+        <div class="loading-container">
+          <mat-spinner diameter="24"></mat-spinner>
+          <span class="loading-text">Processing...</span>
+        </div>
+      }
+    </mat-dialog-actions>
+</div>

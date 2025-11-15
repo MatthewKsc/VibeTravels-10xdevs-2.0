@@ -1,0 +1,111 @@
+.plan-form-dialog-container {
+  background-color: var(--system-secondary-background);
+}
+
+.plan-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--mat-sys-surface-variant);
+  border-radius: 4px;
+
+  .info-row {
+    display: flex;
+    gap: 0.5rem;
+
+    .info-label {
+      font-weight: 500;
+      min-width: 120px;
+    }
+  }
+}
+
+.tab-content {
+  padding: 1.5rem 0;
+
+  .full-width {
+    width: 100%;
+  }
+}
+
+.edit-hint {
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background-color: #e3f2fd;
+  border-radius: 4px;
+  color: #1976d2;
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+}
+
+.preview-content {
+  .markdown-preview {
+    padding: 1rem;
+    background-color: var(--mat-sys-surface-variant);
+    border-radius: 4px;
+    min-height: 300px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}
+
+.reject-form-section {
+  padding: 1rem 0;
+
+  h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+
+  p {
+    margin: 0 0 1rem 0;
+    color: var(--mat-sys-on-surface-variant);
+  }
+
+  .full-width {
+    width: 100%;
+  }
+}
+
+mat-dialog-content {
+  max-height: 70vh;
+  min-width: 600px;
+}
+
+mat-dialog-actions {
+  padding: 16px 24px;
+
+  .loading-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .loading-text {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  mat-dialog-content {
+    min-width: 90vw;
+  }
+
+  .plan-info .info-row {
+    flex-direction: column;
+    gap: 0.25rem;
+
+    .info-label {
+      min-width: auto;
+    }
+  }
+}

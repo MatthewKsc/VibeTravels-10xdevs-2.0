@@ -1,0 +1,6 @@
+﻿@VibeTravelsApi_HostAddress = http://localhost:5131
+
+
+### 1) Check API alive status
+GET {{VibeTravelsApi_HostAddress}}/api/health
+Accept: application/json

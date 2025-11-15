@@ -1,0 +1,9 @@
+<div class="notes-root-wrapper">
+  <app-notes-toolbar (addNoteClick)="onAddNote()" />
+  <app-notes-list 
+    [notes]="notes() ?? []"
+    (noteViewClick)="onViewNote($event)"
+    (noteEditClick)="onEditNote($event)"
+    (noteDeleteClick)="onDeleteNote($event)"
+    (noteGeneratePlanClick)="onGeneratePlan($event)" />
+</div>

@@ -1,0 +1,56 @@
+﻿@VibeTravelsApi_HostAddress = http://localhost:5131
+
+### Basic test variables (adjust email to be unique for each new sign-up)
+@UserEmail = user1@example.com
+@UserPassword = Passw0rd!123
+
+### 1) Sign Up a new user
+POST {{VibeTravelsApi_HostAddress}}/api/users/signup
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "{{UserEmail}}",
+  "password": "{{UserPassword}}"
+}
+
+### 2) Sign In with existing user credentials (stores JWT)
+POST {{VibeTravelsApi_HostAddress}}/api/users/signin
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "{{UserEmail}}",
+  "password": "{{UserPassword}}"
+}
+> {%
+    try {
+        const body = response.body;
+        const token = body?.accessToken ?? body?.AccessToken; // camelCase or PascalCase fallback
+        if (token) {
+            client.global.set("accessToken", token);
+            client.log("Stored accessToken variable.");
+        } else {
+            client.log("Signin response missing token property.");
+        }
+    } catch (e) { client.log("Parse error: " + e); }
+%}
+
+### 2b) Negative: Sign In with wrong password (expect 401 / Unauthorized)
+POST {{VibeTravelsApi_HostAddress}}/api/users/signin
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "{{UserEmail}}",
+  "password": "WRONG_{{UserPassword}}"
+}
+
+### 3a) Unauthorized call to protected /alive (expect 401)
+GET {{VibeTravelsApi_HostAddress}}/api/users/alive
+Accept: application/json
+
+### 3b) Authorized call to protected /alive (expect 200 "Api Alive")
+GET {{VibeTravelsApi_HostAddress}}/api/users/alive
+Authorization: Bearer {{accessToken}}
+Accept: application/json
