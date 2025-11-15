@@ -28,7 +28,7 @@ jobs:
           cache-dependency-path: "./Client/vibe-travels/package-lock.json"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
         working-directory: ./Client/vibe-travels
 
       - name: Lint
