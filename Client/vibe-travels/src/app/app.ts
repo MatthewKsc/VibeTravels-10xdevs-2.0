@@ -9,5 +9,5 @@ import { NavigationRoot } from './modules/navigation/components/navigation-root/
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('vibe-travels');
+  readonly title = signal('vibe-travels');
 }
